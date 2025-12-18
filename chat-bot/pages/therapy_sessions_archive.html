@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" class="smooth-scroll">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MindEase Counselor - Secure therapy sessions archive with conversation history, insights, and pattern recognition for your mental wellness journey">
+    <title>Therapy Sessions Archive - MindEase Counselor</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fmindeasec5248back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background">
+    <!-- Crisis Support Floating Button -->
+    <button 
+        onclick="window.location.href='crisis_support_center.html'" 
+        class="fixed bottom-6 right-6 z-50 bg-error hover:bg-error-dark text-text-inverse p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 focus-visible-ring group"
+        aria-label="Emergency Crisis Support">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse-gentle"></span>
+    </button>
+
+    <!-- Navigation Header -->
+    <header class="bg-surface-elevated border-b border-border sticky top-0 z-40 backdrop-blur-custom">
+        <nav class="container-custom py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="homepage.html" class="flex items-center gap-3 group">
+                    <div class="relative">
+                        <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#4A7C59" opacity="0.1"/>
+                            <path d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 10C25.514 10 30 14.486 30 20C30 25.514 25.514 30 20 30C14.486 30 10 25.514 10 20C10 14.486 14.486 10 20 10Z" fill="#4A7C59"/>
+                            <path d="M20 14C16.686 14 14 16.686 14 20C14 23.314 16.686 26 20 26C23.314 26 26 23.314 26 20C26 16.686 23.314 14 20 14ZM20 16C22.209 16 24 17.791 24 20C24 22.209 22.209 24 20 24C17.791 24 16 22.209 16 20C16 17.791 17.791 16 20 16Z" fill="#6B8E7A"/>
+                            <circle cx="20" cy="20" r="3" fill="#E8B86D"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-headline font-semibold text-primary group-hover:text-primary-600 transition-colors">MindEase</h1>
+                        <p class="text-xs text-text-tertiary">Counselor</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="ai_counselor_interface.html" class="text-text-secondary hover:text-primary transition-colors">AI Counselor</a>
+                    <a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors">Resources</a>
+                    <a href="therapy_sessions_archive.html" class="text-primary font-medium border-b-2 border-primary pb-1">My Sessions</a>
+                    <a href="personal_growth_tracker.html" class="text-text-secondary hover:text-primary transition-colors">Progress</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="ai_counselor_interface.html" class="btn btn-primary">
+                        Start Conversation
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button 
+                    id="mobileMenuBtn"
+                    class="md:hidden p-2 text-text-secondary hover:text-primary transition-colors"
+                    aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4 animate-slide-down">
+                <div class="flex flex-col gap-4">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors py-2">Home</a>
+                    <a href="ai_counselor_interface.html" class="text-text-secondary hover:text-primary transition-colors py-2">AI Counselor</a>
+                    <a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors py-2">Resources</a>
+                    <a href="therapy_sessions_archive.html" class="text-primary font-medium py-2">My Sessions</a>
+                    <a href="personal_growth_tracker.html" class="text-text-secondary hover:text-primary transition-colors py-2">Progress</a>
+                    <a href="ai_counselor_interface.html" class="btn btn-primary w-full mt-2">Start Conversation</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="section-sm bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="header-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="2" fill="#4A7C59"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#header-pattern)"/>
+            </svg>
+        </div>
+
+        <div class="container-custom relative">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-primary-100 text-primary px-4 py-2 rounded-full mb-4">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm font-medium">Secure & Encrypted</span>
+                </div>
+                <h1 class="text-4xl lg:text-5xl font-headline font-semibold text-text-primary mb-4 leading-tight">
+                    Your Therapy Journey
+                </h1>
+                <p class="text-lg text-text-secondary leading-relaxed">
+                    Access your complete conversation history with insights, patterns, and progress tracking—all securely stored and encrypted for your privacy.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search and Filter Section -->
+    <section class="section-sm bg-surface">
+        <div class="container-custom">
+            <div class="card card-elevated">
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <!-- Search Bar -->
+                    <div class="flex-1 relative">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Search conversations by topic, date, or keyword..." 
+                            class="form-input pl-12"
+                            aria-label="Search therapy sessions">
+                    </div>
+
+                    <!-- Filter Dropdown -->
+                    <div class="flex gap-2">
+                        <select id="filterSelect" class="form-input lg:w-48" aria-label="Filter sessions by category">
+                            <option value="all">All Sessions</option>
+                            <option value="recent">Recent (30 days)</option>
+                            <option value="anxiety">Anxiety Topics</option>
+                            <option value="stress">Stress Management</option>
+                            <option value="mood">Mood Tracking</option>
+                            <option value="progress">Progress Milestones</option>
+                        </select>
+
+                        <!-- Reset Button -->
+                        <button 
+                            id="resetBtn"
+                            class="btn btn-ghost px-4"
+                            aria-label="Reset filters">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6 pt-6 border-t border-border">
+                    <div class="text-center">
+                        <p class="text-2xl font-headline font-semibold text-primary">47</p>
+                        <p class="text-sm text-text-tertiary">Total Sessions</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-headline font-semibold text-secondary">12</p>
+                        <p class="text-sm text-text-tertiary">This Month</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-headline font-semibold text-accent-600">3.2h</p>
+                        <p class="text-sm text-text-tertiary">Avg. Duration</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-headline font-semibold text-success">89%</p>
+                        <p class="text-sm text-text-tertiary">Positive Progress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sessions Archive -->
+    <section class="section">
+        <div class="container-custom">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Main Sessions List -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Session Card 1 -->
+                    <div class="card card-elevated card-interactive group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-text-inverse transition-colors">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <h3 class="text-lg font-headline font-medium text-text-primary">Managing Work Stress</h3>
+                                        <span class="badge badge-primary">Stress</span>
+                                    </div>
+                                    <p class="text-sm text-text-secondary mb-3">
+                                        Discussed coping strategies for workplace pressure and setting healthy boundaries with colleagues...
+                                    </p>
+                                    <div class="flex flex-wrap items-center gap-4 text-xs text-text-tertiary">
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                            December 15, 2025
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            45 minutes
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            Positive outcome
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="p-2 text-text-tertiary hover:text-primary transition-colors" aria-label="Session options">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-text-tertiary">Key Topics:</span>
+                                <div class="flex gap-2">
+                                    <span class="text-xs bg-primary-50 text-primary px-2 py-1 rounded">Boundaries</span>
+                                    <span class="text-xs bg-primary-50 text-primary px-2 py-1 rounded">Self-care</span>
+                                    <span class="text-xs bg-primary-50 text-primary px-2 py-1 rounded">Communication</span>
+                                </div>
+                            </div>
+                            <button class="text-sm text-primary hover:text-primary-600 font-medium flex items-center gap-1 transition-colors">
+                                View Details
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Session Card 2 -->
+                    <div class="card card-elevated card-interactive group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-secondary group-hover:text-text-inverse transition-colors">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <h3 class="text-lg font-headline font-medium text-text-primary">Anxiety & Social Situations</h3>
+                                        <span class="badge badge-warning">Anxiety</span>
+                                    </div>
+                                    <p class="text-sm text-text-secondary mb-3">
+                                        Explored techniques for managing social anxiety and building confidence in group settings...
+                                    </p>
+                                    <div class="flex flex-wrap items-center gap-4 text-xs text-text-tertiary">
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                            December 12, 2025
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            52 minutes
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            Breakthrough moment
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="p-2 text-text-tertiary hover:text-primary transition-colors" aria-label="Session options">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-text-tertiary">Key Topics:</span>
+                                <div class="flex gap-2">
+                                    <span class="text-xs bg-secondary-50 text-secondary px-2 py-1 rounded">Breathing</span>
+                                    <span class="text-xs bg-secondary-50 text-secondary px-2 py-1 rounded">Exposure</span>
+                                    <span class="text-xs bg-secondary-50 text-secondary px-2 py-1 rounded">Confidence</span>
+                                </div>
+                            </div>
+                            <button class="text-sm text-primary hover:text-primary-600 font-medium flex items-center gap-1 transition-colors">
+                                View Details
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Session Card 3 -->
+                    <div class="card card-elevated card-interactive group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:text-text-primary transition-colors">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <h3 class="text-lg font-headline font-medium text-text-primary">Progress Check-In</h3>
+                                        <span class="badge badge-success">Milestone</span>
+                                    </div>
+                                    <p class="text-sm text-text-secondary mb-3">
+                                        Celebrated achievements in managing daily stress and reviewed personal growth over the past month...
+                                    </p>
+                                    <div class="flex flex-wrap items-center gap-4 text-xs text-text-tertiary">
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                            </svg>
+                                            December 8, 2025
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            38 minutes
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                            </svg>
+                                            Significant progress
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="p-2 text-text-tertiary hover:text-primary transition-colors" aria-label="Session options">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs text-text-tertiary">Key Topics:</span>
+                                <div class="flex gap-2">
+                                    <span class="text-xs bg-accent-50 text-accent-700 px-2 py-1 rounded">Goals</span>
+                                    <span class="text-xs bg-accent-50 text-accent-700 px-2 py-1 rounded">Reflection</span>
+                                    <span class="text-xs bg-accent-50 text-accent-700 px-2 py-1 rounded">Growth</span>
+                                </div>
+                            </div>
+                            <button class="text-sm text-primary hover:text-primary-600 font-medium flex items-center gap-1 transition-colors">
+                                View Details
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="text-center pt-4">
+                        <button class="btn btn-outline">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                            Load More Sessions
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sidebar - Insights & Actions -->
+                <div class="lg:col-span-1 space-y-6">
+                    <!-- Pattern Recognition Card -->
+                    <div class="card card-elevated">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-headline font-medium text-text-primary">Pattern Insights</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-primary-50 rounded-lg">
+                                <p class="text-sm font-medium text-primary mb-1">Most Discussed Topic</p>
+                                <p class="text-xs text-text-secondary">Work-related stress (32% of sessions)</p>
+                            </div>
+                            <div class="p-3 bg-secondary-50 rounded-lg">
+                                <p class="text-sm font-medium text-secondary mb-1">Peak Session Times</p>
+                                <p class="text-xs text-text-secondary">Evenings (7-9 PM) and weekends</p>
+                            </div>
+                            <div class="p-3 bg-success-light rounded-lg">
+                                <p class="text-sm font-medium text-success-dark mb-1">Progress Trend</p>
+                                <p class="text-xs text-text-secondary">Consistent improvement over 3 months</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Card -->
+                    <div class="card card-elevated">
+                        <h3 class="text-lg font-headline font-medium text-text-primary mb-4">Quick Actions</h3>
+                        <div class="space-y-3">
+                            <button class="w-full btn btn-primary justify-start">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                Export All Sessions
+                            </button>
+                            <button class="w-full btn btn-outline justify-start">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                Generate Summary
+                            </button>
+                            <button class="w-full btn btn-ghost justify-start">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                Privacy Settings
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Data Retention Card -->
+                    <div class="card card-elevated border-2 border-primary-200">
+                        <div class="flex items-start gap-3 mb-3">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <h4 class="text-sm font-medium text-text-primary mb-1">Data Retention</h4>
+                                <p class="text-xs text-text-secondary leading-relaxed">
+                                    Your sessions are stored securely with end-to-end encryption. You can customize retention periods in privacy settings.
+                                </p>
+                            </div>
+                        </div>
+                        <button class="text-sm text-primary hover:text-primary-600 font-medium flex items-center gap-1 transition-colors">
+                            Manage Data
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Support Resources -->
+                    <div class="card bg-gradient-to-br from-primary-50 to-secondary-50 border-0">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg class="w-6 h-6 text-text-inverse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-sm font-medium text-text-primary mb-2">Need Support?</h4>
+                            <p class="text-xs text-text-secondary mb-4">
+                                Access crisis resources or connect with a professional therapist anytime.
+                            </p>
+                            <a href="crisis_support_center.html" class="btn btn-primary btn-sm w-full">
+                                Get Help Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy & Security Banner -->
+    <section class="section-sm bg-surface">
+        <div class="container-custom">
+            <div class="card card-elevated border-2 border-success-light">
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 bg-success-light rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-success-dark" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-lg font-headline font-medium text-text-primary mb-2">Your Privacy is Protected</h3>
+                        <p class="text-sm text-text-secondary leading-relaxed">
+                            All conversations are encrypted end-to-end and stored securely following HIPAA compliance standards. You have complete control over your data with customizable retention periods and the ability to export or delete sessions at any time.
+                        </p>
+                    </div>
+                    <div class="flex gap-2 flex-shrink-0">
+                        <button class="btn btn-outline btn-sm">
+                            Privacy Policy
+                        </button>
+                        <button class="btn btn-ghost btn-sm">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-surface-elevated border-t border-border">
+        <div class="container-custom py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Column -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#4A7C59" opacity="0.1"/>
+                            <path d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 10C25.514 10 30 14.486 30 20C30 25.514 25.514 30 20 30C14.486 30 10 25.514 10 20C10 14.486 14.486 10 20 10Z" fill="#4A7C59"/>
+                            <path d="M20 14C16.686 14 14 16.686 14 20C14 23.314 16.686 26 20 26C23.314 26 26 23.314 26 20C26 16.686 23.314 14 20 14ZM20 16C22.209 16 24 17.791 24 20C24 22.209 22.209 24 20 24C17.791 24 16 22.209 16 20C16 17.791 17.791 16 20 16Z" fill="#6B8E7A"/>
+                            <circle cx="20" cy="20" r="3" fill="#E8B86D"/>
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-headline font-semibold text-primary">MindEase</h3>
+                            <p class="text-xs text-text-tertiary">Counselor</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-text-secondary mb-4">
+                        Compassionate AI-powered mental health support, available 24/7.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-text-inverse transition-colors" aria-label="Facebook">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-text-inverse transition-colors" aria-label="Twitter">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-text-inverse transition-colors" aria-label="Instagram">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-headline font-medium text-text-primary mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="ai_counselor_interface.html" class="text-text-secondary hover:text-primary transition-colors">AI Counselor</a></li>
+                        <li><a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors">Resources</a></li>
+                        <li><a href="therapy_sessions_archive.html" class="text-text-secondary hover:text-primary transition-colors">My Sessions</a></li>
+                        <li><a href="personal_growth_tracker.html" class="text-text-secondary hover:text-primary transition-colors">Progress Tracker</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-headline font-medium text-text-primary mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="crisis_support_center.html" class="text-text-secondary hover:text-primary transition-colors">Crisis Support</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-headline font-medium text-text-primary mb-4">Get in Touch</h4>
+                    <ul class="space-y-3 text-sm text-text-secondary">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span>support@mindease.com</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span>1-800-MINDEASE</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-error flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            <span class="font-medium">Crisis: 988 (24/7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-tertiary">
+                <p>© 2025 MindEase Counselor. All Rights Reserved.</p>
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Secure & Encrypted
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        HIPAA Compliant
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Search and Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
+        const resetBtn = document.getElementById('resetBtn');
+
+        resetBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            filterSelect.value = 'all';
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

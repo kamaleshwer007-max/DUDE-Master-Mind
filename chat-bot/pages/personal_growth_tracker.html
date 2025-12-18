@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" class="smooth-scroll">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your mental health journey with MindEase Counselor's Personal Growth Tracker - visualize progress, celebrate milestones, and achieve your wellness goals">
+    <title>Personal Growth Tracker - MindEase Counselor</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fmindeasec5248back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background">
+    <!-- Crisis Support Floating Button -->
+    <button 
+        onclick="window.location.href='crisis_support_center.html'" 
+        class="fixed bottom-6 right-6 z-50 bg-error hover:bg-error-dark text-text-inverse p-4 rounded-full shadow-xl transition-all duration-300 hover:scale-110 focus-visible-ring group"
+        aria-label="Emergency Crisis Support">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        <span class="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse-gentle"></span>
+    </button>
+
+    <!-- Navigation Header -->
+    <header class="bg-surface-elevated border-b border-border sticky top-0 z-40 backdrop-blur-custom">
+        <nav class="container-custom py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="homepage.html" class="flex items-center gap-3 group">
+                    <div class="relative">
+                        <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#4A7C59" opacity="0.1"/>
+                            <path d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 10C25.514 10 30 14.486 30 20C30 25.514 25.514 30 20 30C14.486 30 10 25.514 10 20C10 14.486 14.486 10 20 10Z" fill="#4A7C59"/>
+                            <path d="M20 14C16.686 14 14 16.686 14 20C14 23.314 16.686 26 20 26C23.314 26 26 23.314 26 20C26 16.686 23.314 14 20 14ZM20 16C22.209 16 24 17.791 24 20C24 22.209 22.209 24 20 24C17.791 24 16 22.209 16 20C16 17.791 17.791 16 20 16Z" fill="#6B8E7A"/>
+                            <circle cx="20" cy="20" r="3" fill="#E8B86D"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-headline font-semibold text-primary group-hover:text-primary-600 transition-colors">MindEase</h1>
+                        <p class="text-xs text-text-tertiary">Counselor</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors">Home</a>
+                    <a href="ai_counselor_interface.html" class="text-text-secondary hover:text-primary transition-colors">AI Counselor</a>
+                    <a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors">Resources</a>
+                    <a href="therapy_sessions_archive.html" class="text-text-secondary hover:text-primary transition-colors">My Sessions</a>
+                    <a href="personal_growth_tracker.html" class="text-primary font-medium border-b-2 border-primary pb-1">Progress</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden md:block">
+                    <a href="ai_counselor_interface.html" class="btn btn-primary">
+                        Start Conversation
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button 
+                    id="mobileMenuBtn"
+                    class="md:hidden p-2 text-text-secondary hover:text-primary transition-colors"
+                    aria-label="Toggle mobile menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4 animate-slide-down">
+                <div class="flex flex-col gap-4">
+                    <a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors py-2">Home</a>
+                    <a href="ai_counselor_interface.html" class="text-text-secondary hover:text-primary transition-colors py-2">AI Counselor</a>
+                    <a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors py-2">Resources</a>
+                    <a href="therapy_sessions_archive.html" class="text-text-secondary hover:text-primary transition-colors py-2">My Sessions</a>
+                    <a href="personal_growth_tracker.html" class="text-primary font-medium py-2">Progress</a>
+                    <a href="ai_counselor_interface.html" class="btn btn-primary w-full mt-2">Start Conversation</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="section-sm bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="hero-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="20" cy="20" r="2" fill="#4A7C59"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#hero-pattern)"/>
+            </svg>
+        </div>
+
+        <div class="container-custom relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 bg-success-light text-success-dark px-4 py-2 rounded-full mb-6">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="text-sm font-medium">Your Journey, Your Progress</span>
+                </div>
+
+                <h1 class="text-4xl lg:text-5xl font-headline font-semibold text-text-primary mb-4 leading-tight">
+                    Track Your <span class="gradient-text">Growth Journey</span>
+                </h1>
+                <p class="text-lg text-text-secondary mb-6">
+                    Visualize your progress, celebrate milestones, and stay motivated on your path to mental wellness
+                </p>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                    <div class="bg-surface-elevated rounded-lg p-4 shadow-sm">
+                        <div class="text-2xl font-headline font-semibold text-primary mb-1">42</div>
+                        <div class="text-xs text-text-tertiary">Days Active</div>
+                    </div>
+                    <div class="bg-surface-elevated rounded-lg p-4 shadow-sm">
+                        <div class="text-2xl font-headline font-semibold text-secondary mb-1">18</div>
+                        <div class="text-xs text-text-tertiary">Goals Achieved</div>
+                    </div>
+                    <div class="bg-surface-elevated rounded-lg p-4 shadow-sm">
+                        <div class="text-2xl font-headline font-semibold text-accent-600 mb-1">89%</div>
+                        <div class="text-xs text-text-tertiary">Progress Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container-custom">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Left Column - Goals & Milestones -->
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Active Goals Section -->
+                    <div class="card card-elevated">
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h2 class="text-xl font-headline font-medium text-text-primary">Active Goals</h2>
+                                    <p class="text-sm text-text-tertiary">Track your current wellness objectives</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="document.getElementById('newGoalModal').classList.remove('hidden')">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                                </svg>
+                                New Goal
+                            </button>
+                        </div>
+
+                        <!-- Goal Cards -->
+                        <div class="space-y-4">
+                            <!-- Goal 1 -->
+                            <div class="border border-border rounded-lg p-4 hover:bg-surface-hover transition-colors">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-text-primary mb-1">Practice Daily Mindfulness</h3>
+                                        <p class="text-sm text-text-secondary">Meditate for 10 minutes each morning</p>
+                                    </div>
+                                    <span class="badge badge-primary">In Progress</span>
+                                </div>
+                                
+                                <!-- Progress Bar -->
+                                <div class="mb-3">
+                                    <div class="flex items-center justify-between text-sm mb-2">
+                                        <span class="text-text-tertiary">Progress</span>
+                                        <span class="font-medium text-primary">75%</span>
+                                    </div>
+                                    <div class="w-full bg-surface rounded-full h-2">
+                                        <div class="bg-primary h-2 rounded-full transition-all duration-500" style="width: 75%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2 text-text-tertiary">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <span>Target: Dec 31, 2025</span>
+                                    </div>
+                                    <button class="text-primary hover:text-primary-600 transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Goal 2 -->
+                            <div class="border border-border rounded-lg p-4 hover:bg-surface-hover transition-colors">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-text-primary mb-1">Improve Sleep Quality</h3>
+                                        <p class="text-sm text-text-secondary">Maintain consistent sleep schedule for 30 days</p>
+                                    </div>
+                                    <span class="badge badge-primary">In Progress</span>
+                                </div>
+                                
+                                <!-- Progress Bar -->
+                                <div class="mb-3">
+                                    <div class="flex items-center justify-between text-sm mb-2">
+                                        <span class="text-text-tertiary">Progress</span>
+                                        <span class="font-medium text-secondary">60%</span>
+                                    </div>
+                                    <div class="w-full bg-surface rounded-full h-2">
+                                        <div class="bg-secondary h-2 rounded-full transition-all duration-500" style="width: 60%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2 text-text-tertiary">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <span>Target: Jan 15, 2026</span>
+                                    </div>
+                                    <button class="text-primary hover:text-primary-600 transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Goal 3 -->
+                            <div class="border border-border rounded-lg p-4 hover:bg-surface-hover transition-colors">
+                                <div class="flex items-start justify-between mb-3">
+                                    <div class="flex-1">
+                                        <h3 class="font-medium text-text-primary mb-1">Build Social Connections</h3>
+                                        <p class="text-sm text-text-secondary">Engage in meaningful conversations 3x per week</p>
+                                    </div>
+                                    <span class="badge badge-primary">In Progress</span>
+                                </div>
+                                
+                                <!-- Progress Bar -->
+                                <div class="mb-3">
+                                    <div class="flex items-center justify-between text-sm mb-2">
+                                        <span class="text-text-tertiary">Progress</span>
+                                        <span class="font-medium text-accent-600">45%</span>
+                                    </div>
+                                    <div class="w-full bg-surface rounded-full h-2">
+                                        <div class="bg-accent h-2 rounded-full transition-all duration-500" style="width: 45%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center justify-between text-sm">
+                                    <div class="flex items-center gap-2 text-text-tertiary">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <span>Target: Feb 1, 2026</span>
+                                    </div>
+                                    <button class="text-primary hover:text-primary-600 transition-colors">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Journey Visualization -->
+                    <div class="card card-elevated">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-headline font-medium text-text-primary">Your Journey</h2>
+                                <p class="text-sm text-text-tertiary">Progress over the last 30 days</p>
+                            </div>
+                        </div>
+
+                        <!-- Chart Placeholder -->
+                        <div class="relative h-64 bg-surface rounded-lg p-4" role="img" aria-label="Progress chart showing wellness journey over 30 days with mood trends and activity levels">
+                            <svg class="w-full h-full" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Grid Lines -->
+                                <line x1="50" y1="20" x2="50" y2="180" stroke="#E5E9E5" stroke-width="1"/>
+                                <line x1="50" y1="180" x2="580" y2="180" stroke="#E5E9E5" stroke-width="2"/>
+                                
+                                <!-- Y-axis labels -->
+                                <text x="30" y="25" fill="#7A8A7C" font-size="12">100</text>
+                                <text x="35" y="65" fill="#7A8A7C" font-size="12">75</text>
+                                <text x="35" y="105" fill="#7A8A7C" font-size="12">50</text>
+                                <text x="35" y="145" fill="#7A8A7C" font-size="12">25</text>
+                                <text x="40" y="185" fill="#7A8A7C" font-size="12">0</text>
+                                
+                                <!-- Progress Line -->
+                                <polyline
+                                    points="50,140 100,120 150,110 200,100 250,85 300,75 350,70 400,65 450,60 500,55 550,50"
+                                    fill="none"
+                                    stroke="#4A7C59"
+                                    stroke-width="3"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                
+                                <!-- Area under curve -->
+                                <polygon
+                                    points="50,140 100,120 150,110 200,100 250,85 300,75 350,70 400,65 450,60 500,55 550,50 550,180 50,180"
+                                    fill="#4A7C59"
+                                    opacity="0.1"
+                                />
+                                
+                                <!-- Data points -->
+                                <circle cx="50" cy="140" r="4" fill="#4A7C59"/>
+                                <circle cx="100" cy="120" r="4" fill="#4A7C59"/>
+                                <circle cx="150" cy="110" r="4" fill="#4A7C59"/>
+                                <circle cx="200" cy="100" r="4" fill="#4A7C59"/>
+                                <circle cx="250" cy="85" r="4" fill="#4A7C59"/>
+                                <circle cx="300" cy="75" r="4" fill="#4A7C59"/>
+                                <circle cx="350" cy="70" r="4" fill="#4A7C59"/>
+                                <circle cx="400" cy="65" r="4" fill="#4A7C59"/>
+                                <circle cx="450" cy="60" r="4" fill="#4A7C59"/>
+                                <circle cx="500" cy="55" r="4" fill="#4A7C59"/>
+                                <circle cx="550" cy="50" r="4" fill="#4A7C59"/>
+                                
+                                <!-- X-axis labels -->
+                                <text x="40" y="200" fill="#7A8A7C" font-size="11">Week 1</text>
+                                <text x="180" y="200" fill="#7A8A7C" font-size="11">Week 2</text>
+                                <text x="320" y="200" fill="#7A8A7C" font-size="11">Week 3</text>
+                                <text x="460" y="200" fill="#7A8A7C" font-size="11">Week 4</text>
+                            </svg>
+                        </div>
+
+                        <!-- Chart Legend -->
+                        <div class="flex items-center justify-center gap-6 mt-4 text-sm">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-primary rounded-full"></div>
+                                <span class="text-text-secondary">Wellness Score</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-secondary rounded-full"></div>
+                                <span class="text-text-secondary">Activity Level</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Milestones -->
+                    <div class="card card-elevated">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-5 h-5 text-accent-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="text-xl font-headline font-medium text-text-primary">Recent Milestones</h2>
+                                <p class="text-sm text-text-tertiary">Celebrate your achievements</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <!-- Milestone 1 -->
+                            <div class="flex items-start gap-4 p-4 bg-success-light rounded-lg border border-success">
+                                <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-text-inverse" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-medium text-text-primary mb-1">7-Day Meditation Streak</h3>
+                                    <p class="text-sm text-text-secondary mb-2">Completed daily mindfulness practice for one week</p>
+                                    <span class="text-xs text-text-tertiary">Achieved on Dec 10, 2025</span>
+                                </div>
+                            </div>
+
+                            <!-- Milestone 2 -->
+                            <div class="flex items-start gap-4 p-4 bg-accent-50 rounded-lg border border-accent-200">
+                                <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-medium text-text-primary mb-1">First Goal Completed</h3>
+                                    <p class="text-sm text-text-secondary mb-2">Successfully achieved your first wellness goal</p>
+                                    <span class="text-xs text-text-tertiary">Achieved on Dec 5, 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Insights & Actions -->
+                <div class="space-y-6">
+                    <!-- Wellness Score Card -->
+                    <div class="card card-elevated text-center">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary-100 rounded-full mb-4">
+                            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-headline font-medium text-text-primary mb-2">Wellness Score</h3>
+                        <div class="text-4xl font-headline font-semibold text-primary mb-2">89</div>
+                        <p class="text-sm text-text-secondary mb-4">Excellent progress this month!</p>
+                        
+                        <!-- Score Breakdown -->
+                        <div class="space-y-3 text-left">
+                            <div>
+                                <div class="flex items-center justify-between text-sm mb-1">
+                                    <span class="text-text-secondary">Mood Stability</span>
+                                    <span class="font-medium text-primary">92%</span>
+                                </div>
+                                <div class="w-full bg-surface rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between text-sm mb-1">
+                                    <span class="text-text-secondary">Activity Level</span>
+                                    <span class="font-medium text-secondary">85%</span>
+                                </div>
+                                <div class="w-full bg-surface rounded-full h-2">
+                                    <div class="bg-secondary h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between text-sm mb-1">
+                                    <span class="text-text-secondary">Sleep Quality</span>
+                                    <span class="font-medium text-accent-600">78%</span>
+                                </div>
+                                <div class="w-full bg-surface rounded-full h-2">
+                                    <div class="bg-accent h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Badges -->
+                    <div class="card card-elevated">
+                        <h3 class="text-lg font-headline font-medium text-text-primary mb-4">Achievement Badges</h3>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-success-light rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <svg class="w-8 h-8 text-success-dark" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-text-secondary">Early Bird</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-text-secondary">Consistent</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <svg class="w-8 h-8 text-accent-700" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-text-secondary">Motivated</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card card-elevated">
+                        <h3 class="text-lg font-headline font-medium text-text-primary mb-4">Quick Actions</h3>
+                        <div class="space-y-3">
+                            <button class="w-full btn btn-outline text-left justify-start">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                                Talk to AI Counselor
+                            </button>
+                            <button class="w-full btn btn-outline text-left justify-start">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                                Browse Resources
+                            </button>
+                            <button class="w-full btn btn-outline text-left justify-start">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                                View Session Notes
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sharing Options -->
+                    <div class="card card-elevated">
+                        <h3 class="text-lg font-headline font-medium text-text-primary mb-4">Share Progress</h3>
+                        <p class="text-sm text-text-secondary mb-4">Share your achievements with trusted contacts (optional)</p>
+                        <button class="w-full btn btn-ghost">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                            </svg>
+                            Share with Support Circle
+                        </button>
+                    </div>
+
+                    <!-- Privacy Notice -->
+                    <div class="bg-primary-50 border border-primary-200 rounded-lg p-4">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <div>
+                                <p class="text-sm font-medium text-primary mb-1">Your Privacy Matters</p>
+                                <p class="text-xs text-text-secondary">All progress data is encrypted and stored securely. You have full control over your information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Goal Modal -->
+    <div id="newGoalModal" class="hidden fixed inset-0 bg-text-primary bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-surface-elevated rounded-lg max-w-lg w-full p-6 shadow-xl animate-scale-in">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-headline font-semibold text-text-primary">Create New Goal</h3>
+                <button onclick="document.getElementById('newGoalModal').classList.add('hidden')" class="text-text-tertiary hover:text-text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <form class="space-y-4">
+                <div>
+                    <label class="form-label">Goal Title</label>
+                    <input type="text" class="form-input" placeholder="e.g., Practice gratitude journaling">
+                </div>
+
+                <div>
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input" rows="3" placeholder="Describe your goal and why it matters to you..."></textarea>
+                </div>
+
+                <div>
+                    <label class="form-label">Category</label>
+                    <select class="form-input">
+                        <option>Mindfulness & Meditation</option>
+                        <option>Sleep & Rest</option>
+                        <option>Social Connection</option>
+                        <option>Physical Activity</option>
+                        <option>Emotional Regulation</option>
+                        <option>Self-Care</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="form-label">Target Date</label>
+                    <input type="date" class="form-input" value="2026-01-31">
+                </div>
+
+                <div>
+                    <label class="form-label">Measurable Target</label>
+                    <input type="text" class="form-input" placeholder="e.g., 5 times per week">
+                </div>
+
+                <div class="flex gap-3 pt-4">
+                    <button type="button" onclick="document.getElementById('newGoalModal').classList.add('hidden')" class="btn btn-outline flex-1">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary flex-1">
+                        Create Goal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface-elevated border-t border-border">
+        <div class="container-custom py-12">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand Column -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="18" fill="#4A7C59" opacity="0.1"/>
+                            <path d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 10C25.514 10 30 14.486 30 20C30 25.514 25.514 30 20 30C14.486 30 10 25.514 10 20C10 14.486 14.486 10 20 10Z" fill="#4A7C59"/>
+                            <path d="M20 14C16.686 14 14 16.686 14 20C14 23.314 16.686 26 20 26C23.314 26 26 23.314 26 20C26 16.686 23.314 14 20 14ZM20 16C22.209 16 24 17.791 24 20C24 22.209 22.209 24 20 24C17.791 24 16 22.209 16 20C16 17.791 17.791 16 20 16Z" fill="#6B8E7A"/>
+                            <circle cx="20" cy="20" r="3" fill="#E8B86D"/>
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-headline font-semibold text-primary">MindEase</h3>
+                            <p class="text-xs text-text-tertiary">Counselor</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-text-secondary mb-4">
+                        Compassionate AI-powered mental health support, available 24/7.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-text-inverse transition-colors" aria-label="Facebook">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-text-inverse transition-colors" aria-label="Twitter">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0)" class="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-text-inverse transition-colors" aria-label="Instagram">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-headline font-medium text-text-primary mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="homepage.html" class="text-text-secondary hover:text-primary transition-colors">Home</a></li>
+                        <li><a href="ai_counselor_interface.html" class="text-text-secondary hover:text-primary transition-colors">AI Counselor</a></li>
+                        <li><a href="resource_library.html" class="text-text-secondary hover:text-primary transition-colors">Resources</a></li>
+                        <li><a href="therapy_sessions_archive.html" class="text-text-secondary hover:text-primary transition-colors">My Sessions</a></li>
+                        <li><a href="personal_growth_tracker.html" class="text-text-secondary hover:text-primary transition-colors">Progress Tracker</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-headline font-medium text-text-primary mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="crisis_support_center.html" class="text-text-secondary hover:text-primary transition-colors">Crisis Support</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-headline font-medium text-text-primary mb-4">Get in Touch</h4>
+                    <ul class="space-y-3 text-sm text-text-secondary">
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span>support@mindease.com</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            <span>1-800-MINDEASE</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-error flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                            <span class="font-medium">Crisis: 988 (24/7)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-tertiary">
+                <p>© 2025 MindEase Counselor. All Rights Reserved.</p>
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Secure & Encrypted
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        HIPAA Compliant
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

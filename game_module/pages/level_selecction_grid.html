@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Selection - DUDE Care Game</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fdudedetec6342back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.11"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-gradient-to-br from-primary-50 via-background to-secondary-50 min-h-screen">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="relative bg-surface shadow-sm border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and Title -->
+                <div class="flex items-center gap-3">
+                    <a href="game_dashboard.html" class="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg shadow-md hover:shadow-lg transition-all">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </a>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">DUDE Care</h1>
+                        <p class="text-xs text-text-secondary">Level Selection</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="game_dashboard.html" class="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="results_and_progress.html" class="text-sm font-medium text-text-secondary hover:text-primary-600 transition-colors flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Progress
+                    </a>
+                </nav>
+
+                <!-- User Profile -->
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:block text-right">
+                        <p class="text-sm font-medium text-text-primary" id="userNameDisplay">Player</p>
+                        <p class="text-xs text-text-secondary">Level <span id="currentLevelDisplay">1</span></p>
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white font-semibold shadow-md hover:shadow-lg transition-all">
+                        <span id="userInitial">P</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Overall Progress Section -->
+        <section class="mb-8">
+            <div class="card bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
+                <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">Your Journey Progress</h2>
+                        <p class="text-primary-100 text-sm">Complete all 50 levels to master decision-making</p>
+                    </div>
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold" id="completedCount">0</p>
+                            <p class="text-xs text-primary-100">Completed</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-3xl font-bold" id="totalScore">0</p>
+                            <p class="text-xs text-primary-100">Total Score</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="mt-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium">Overall Progress</span>
+                        <span class="text-sm font-medium" id="progressPercentage">0%</span>
+                    </div>
+                    <div class="w-full bg-white/20 rounded-full h-3 overflow-hidden">
+                        <div id="progressBar" class="bg-white h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between mt-2 text-xs text-primary-100">
+                        <span>Start</span>
+                        <span>25 Levels</span>
+                        <span>50 Levels</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Controls -->
+        <section class="mb-6">
+            <div class="card">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+                    <h3 class="text-lg font-semibold text-text-primary">Filter Levels</h3>
+                    
+                    <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                        <!-- Category Filter -->
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm font-medium text-text-secondary">Category:</label>
+                            <select id="categoryFilter" class="input py-2 text-sm min-h-0">
+                                <option value="all">All Categories</option>
+                                <option value="safety">Safety</option>
+                                <option value="social">Social</option>
+                                <option value="habits">Daily Habits</option>
+                                <option value="decision">Decision Making</option>
+                            </select>
+                        </div>
+
+                        <!-- Difficulty Filter -->
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm font-medium text-text-secondary">Difficulty:</label>
+                            <select id="difficultyFilter" class="input py-2 text-sm min-h-0">
+                                <option value="all">All Levels</option>
+                                <option value="1">⭐ Easy</option>
+                                <option value="2">⭐⭐ Medium</option>
+                                <option value="3">⭐⭐⭐ Hard</option>
+                            </select>
+                        </div>
+
+                        <!-- Status Filter -->
+                        <div class="flex items-center gap-2">
+                            <label class="text-sm font-medium text-text-secondary">Status:</label>
+                            <select id="statusFilter" class="input py-2 text-sm min-h-0">
+                                <option value="all">All Status</option>
+                                <option value="completed">Completed</option>
+                                <option value="unlocked">Available</option>
+                                <option value="locked">Locked</option>
+                            </select>
+                        </div>
+
+                        <!-- Reset Button -->
+                        <button id="resetFilters" class="btn-outline py-2 px-4 text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Level Grid -->
+        <section>
+            <div id="levelGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                <!-- Level cards will be dynamically generated here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-16">
+                <svg class="w-24 h-24 mx-auto text-text-secondary opacity-50 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">No Levels Found</h3>
+                <p class="text-text-secondary mb-4">Try adjusting your filters to see more levels</p>
+                <button onclick="document.getElementById('resetFilters').click()" class="btn-primary">
+                    Reset Filters
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Level Preview Modal -->
+    <div id="levelModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="card max-w-md w-full animate-slide-in">
+            <div class="flex items-start justify-between mb-4">
+                <div>
+                    <h3 class="text-xl font-bold text-text-primary mb-1" id="modalTitle">Level 1</h3>
+                    <p class="text-sm text-text-secondary" id="modalCategory">Category</p>
+                </div>
+                <button onclick="closeModal()" class="text-text-secondary hover:text-text-primary transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-1" id="modalDifficulty">
+                        <!-- Stars will be added here -->
+                    </div>
+                    <span class="text-sm text-text-secondary" id="modalTime">~5 min</span>
+                </div>
+
+                <p class="text-text-secondary text-sm" id="modalDescription">
+                    Test your decision-making skills in this scenario.
+                </p>
+
+                <div class="flex items-center gap-2 p-3 bg-primary-50 rounded-lg">
+                    <svg class="w-5 h-5 text-primary-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <p class="text-xs text-primary-700">Choose the best decision based on the scenario presented</p>
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button onclick="closeModal()" class="btn-outline flex-1">
+                        Cancel
+                    </button>
+                    <button id="startLevelBtn" class="btn-primary flex-1">
+                        Start Level
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+                <svg class="w-6 h-6 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div class="flex-1">
+                <h3 class="text-sm font-semibold text-text-primary">Level Unlocked!</h3>
+                <p class="text-xs text-text-secondary mt-1" id="toastMessage">You can now play this level</p>
+            </div>
+            <button type="button" onclick="hideToast()" class="flex-shrink-0 text-text-secondary hover:text-text-primary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Game data structure
+        const categories = {
+            safety: { name: 'Safety', icon: '🛡️', color: 'error' },
+            social: { name: 'Social', icon: '👥', color: 'secondary' },
+            habits: { name: 'Daily Habits', icon: '📅', color: 'accent' },
+            decision: { name: 'Decision Making', icon: '🎯', color: 'primary' }
+        };
+
+        // Generate 50 levels with varied data
+        const levels = Array.from({ length: 50 }, (_, i) => {
+            const levelNum = i + 1;
+            const categoryKeys = Object.keys(categories);
+            const category = categoryKeys[Math.floor(Math.random() * categoryKeys.length)];
+            const difficulty = Math.min(3, Math.floor(levelNum / 17) + 1);
+            
+            return {
+                id: levelNum,
+                title: `Level ${levelNum}`,
+                category: category,
+                difficulty: difficulty,
+                time: difficulty === 1 ? '3-5 min' : difficulty === 2 ? '5-7 min' : '7-10 min',
+                description: `Challenge your ${categories[category].name.toLowerCase()} decision-making skills in this ${difficulty === 1 ? 'easy' : difficulty === 2 ? 'medium' : 'hard'} scenario.`,
+                status: 'locked',
+                score: 0
+            };
+        });
+
+        // Initialize game state
+        let gameState = {
+            currentLevel: 1,
+            completedLevels: [],
+            totalScore: 0,
+            userName: 'Player'
+        };
+
+        // Load saved game state
+        function loadGameState() {
+            const savedUser = localStorage.getItem('dudeUser');
+            if (savedUser) {
+                const userData = JSON.parse(savedUser);
+                gameState.userName = userData.username || 'Player';
+                gameState.currentLevel = userData.currentLevel || 1;
+                gameState.completedLevels = userData.completedLevels || [];
+                gameState.totalScore = userData.totalScore || 0;
+            }
+
+            // Update user display
+            document.getElementById('userNameDisplay').textContent = gameState.userName;
+            document.getElementById('currentLevelDisplay').textContent = gameState.currentLevel;
+            document.getElementById('userInitial').textContent = gameState.userName.charAt(0).toUpperCase();
+
+            // Update level statuses
+            levels.forEach(level => {
+                if (gameState.completedLevels.includes(level.id)) {
+                    level.status = 'completed';
+                    level.score = Math.floor(Math.random() * 30) + 70; // Mock score 70-100
+                } else if (level.id <= gameState.currentLevel) {
+                    level.status = 'unlocked';
+                } else {
+                    level.status = 'locked';
+                }
+            });
+
+            updateProgressDisplay();
+        }
+
+        // Update progress display
+        function updateProgressDisplay() {
+            const completed = gameState.completedLevels.length;
+            const percentage = Math.round((completed / 50) * 100);
+            
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('totalScore').textContent = gameState.totalScore;
+            document.getElementById('progressPercentage').textContent = `${percentage}%`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+        }
+
+        // Render level grid
+        function renderLevels(filteredLevels = levels) {
+            const grid = document.getElementById('levelGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (filteredLevels.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            
+            grid.innerHTML = filteredLevels.map(level => {
+                const categoryData = categories[level.category];
+                const isLocked = level.status === 'locked';
+                const isCompleted = level.status === 'completed';
+                
+                return `
+                    <div class="card-interactive ${isLocked ? 'state-locked' : 'state-unlocked'} ${isCompleted ? 'state-completed' : ''} relative overflow-hidden group"
+                         onclick="${isLocked ? '' : `openLevelModal(${level.id})`}">
+                        <!-- Category Icon Badge -->
+                        <div class="absolute top-2 right-2 w-8 h-8 rounded-full bg-${categoryData.color}-100 flex items-center justify-center text-lg">
+                            ${categoryData.icon}
+                        </div>
+
+                        <!-- Lock/Check Icon -->
+                        ${isLocked ? `
+                            <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-text-secondary/20 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                        ` : isCompleted ? `
+                            <div class="absolute top-2 left-2 w-6 h-6 rounded-full bg-success-500 flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                        ` : ''}
+
+                        <!-- Level Content -->
+                        <div class="pt-8 pb-4">
+                            <h3 class="text-2xl font-bold text-center mb-2 ${isLocked ? 'text-text-secondary' : 'text-primary-600'}">
+                                ${level.id}
+                            </h3>
+                            <p class="text-xs text-center text-text-secondary mb-3">${categoryData.name}</p>
+                            
+                            <!-- Difficulty Stars -->
+                            <div class="flex justify-center gap-1 mb-2">
+                                ${Array.from({ length: 3 }, (_, i) => `
+                                    <svg class="w-3 h-3 ${i < level.difficulty ? 'text-accent-500' : 'text-border'}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                    </svg>
+                                `).join('')}
+                            </div>
+
+                            ${isCompleted ? `
+                                <div class="text-center">
+                                    <span class="badge badge-success text-xs">Score: ${level.score}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Hover Overlay (for unlocked levels) -->
+                        ${!isLocked ? `
+                            <div class="absolute inset-0 bg-gradient-to-t from-${categoryData.color}-500/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                <div class="text-white w-full">
+                                    <p class="text-xs font-medium mb-1">${level.time}</p>
+                                    <p class="text-xs opacity-90 line-clamp-2">${level.description}</p>
+                                </div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Filter levels
+        function filterLevels() {
+            const category = document.getElementById('categoryFilter').value;
+            const difficulty = document.getElementById('difficultyFilter').value;
+            const status = document.getElementById('statusFilter').value;
+
+            const filtered = levels.filter(level => {
+                const categoryMatch = category === 'all' || level.category === category;
+                const difficultyMatch = difficulty === 'all' || level.difficulty === parseInt(difficulty);
+                const statusMatch = status === 'all' || level.status === status;
+                
+                return categoryMatch && difficultyMatch && statusMatch;
+            });
+
+            renderLevels(filtered);
+        }
+
+        // Reset filters
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('difficultyFilter').value = 'all';
+            document.getElementById('statusFilter').value = 'all';
+            renderLevels();
+        });
+
+        // Add filter event listeners
+        document.getElementById('categoryFilter').addEventListener('change', filterLevels);
+        document.getElementById('difficultyFilter').addEventListener('change', filterLevels);
+        document.getElementById('statusFilter').addEventListener('change', filterLevels);
+
+        // Open level modal
+        function openLevelModal(levelId) {
+            const level = levels.find(l => l.id === levelId);
+            if (!level || level.status === 'locked') return;
+
+            const modal = document.getElementById('levelModal');
+            const categoryData = categories[level.category];
+
+            document.getElementById('modalTitle').textContent = level.title;
+            document.getElementById('modalCategory').textContent = categoryData.name;
+            document.getElementById('modalTime').textContent = level.time;
+            document.getElementById('modalDescription').textContent = level.description;
+
+            // Render difficulty stars
+            const difficultyContainer = document.getElementById('modalDifficulty');
+            difficultyContainer.innerHTML = Array.from({ length: 3 }, (_, i) => `
+                <svg class="w-4 h-4 ${i < level.difficulty ? 'text-accent-500' : 'text-border'}" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                </svg>
+            `).join('');
+
+            // Set start button action
+            document.getElementById('startLevelBtn').onclick = () => {
+                localStorage.setItem('selectedLevel', levelId);
+                window.location.href = 'scenario_gameplay.html';
+            };
+
+            modal.classList.remove('hidden');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('levelModal').classList.add('hidden');
+        }
+
+        // Toast functions
+        function showToast(message) {
+            const toast = document.getElementById('successToast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('successToast').classList.add('hidden');
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('levelModal').addEventListener('click', (e) => {
+            if (e.target.id === 'levelModal') {
+                closeModal();
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGameState();
+            renderLevels();
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

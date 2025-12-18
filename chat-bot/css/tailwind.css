@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors - Grounding sage green for trust and stability */
+    --color-primary: #4A7C59; /* green-700 */
+    --color-primary-50: #F0F5F2; /* green-50 */
+    --color-primary-100: #D9E7DD; /* green-100 */
+    --color-primary-200: #B8D4C1; /* green-200 */
+    --color-primary-300: #8FB89E; /* green-300 */
+    --color-primary-400: #6A9D7E; /* green-400 */
+    --color-primary-500: #4A7C59; /* green-500 */
+    --color-primary-600: #3D6649; /* green-600 */
+    --color-primary-700: #315139; /* green-700 */
+    --color-primary-800: #253D2B; /* green-800 */
+    --color-primary-900: #1A2A1E; /* green-900 */
+
+    /* Secondary Colors - Supporting therapeutic warmth and growth */
+    --color-secondary: #6B8E7A; /* teal-600 */
+    --color-secondary-50: #F2F6F4; /* teal-50 */
+    --color-secondary-100: #DFE9E3; /* teal-100 */
+    --color-secondary-200: #C4D7CB; /* teal-200 */
+    --color-secondary-300: #A1BFAD; /* teal-300 */
+    --color-secondary-400: #86A793; /* teal-400 */
+    --color-secondary-500: #6B8E7A; /* teal-500 */
+    --color-secondary-600: #587564; /* teal-600 */
+    --color-secondary-700: #465D4F; /* teal-700 */
+    --color-secondary-800: #36463D; /* teal-800 */
+    --color-secondary-900: #26312B; /* teal-900 */
+
+    /* Accent Colors - Gentle encouragement and positive moments */
+    --color-accent: #E8B86D; /* amber-400 */
+    --color-accent-50: #FDF8F0; /* amber-50 */
+    --color-accent-100: #F9EDDB; /* amber-100 */
+    --color-accent-200: #F4DCBC; /* amber-200 */
+    --color-accent-300: #EEC894; /* amber-300 */
+    --color-accent-400: #E8B86D; /* amber-400 */
+    --color-accent-500: #D9A04E; /* amber-500 */
+    --color-accent-600: #B8843A; /* amber-600 */
+    --color-accent-700: #8F672D; /* amber-700 */
+    --color-accent-800: #6B4D22; /* amber-800 */
+    --color-accent-900: #4A3518; /* amber-900 */
+
+    /* Background Colors - Clean breathing space for content focus */
+    --color-background: #FAFBFA; /* gray-50 */
+    --color-background-alt: #F5F7F5; /* gray-100 */
+
+    /* Surface Colors - Subtle elevation without harsh shadows */
+    --color-surface: #F5F7F5; /* gray-100 */
+    --color-surface-elevated: #FFFFFF; /* white */
+    --color-surface-hover: #EEF1EE; /* gray-200 */
+
+    /* Text Colors - Readable warmth without stark black */
+    --color-text-primary: #2D3E2F; /* gray-900 */
+    --color-text-secondary: #5A6B5C; /* gray-600 */
+    --color-text-tertiary: #7A8A7C; /* gray-500 */
+    --color-text-disabled: #A5B3A7; /* gray-400 */
+    --color-text-inverse: #FFFFFF; /* white */
+
+    /* Success Colors - Hopeful progress without overwhelming celebration */
+    --color-success: #7BA05B; /* green-500 */
+    --color-success-light: #A8C78E; /* green-300 */
+    --color-success-dark: #5D7D44; /* green-700 */
+
+    /* Warning Colors - Caring concern without alarm */
+    --color-warning: #D4A574; /* orange-400 */
+    --color-warning-light: #E5C19F; /* orange-300 */
+    --color-warning-dark: #B38854; /* orange-600 */
+
+    /* Error Colors - Supportive redirection rather than harsh correction */
+    --color-error: #C17B7B; /* red-400 */
+    --color-error-light: #D9A3A3; /* red-300 */
+    --color-error-dark: #A05E5E; /* red-600 */
+
+    /* Border Colors */
+    --color-border: #E5E9E5; /* gray-300 */
+    --color-border-light: #F0F3F0; /* gray-200 */
+    --color-border-focus: #4A7C59; /* primary */
+
+    /* Shadow Values */
+    --shadow-sm: 0 1px 3px rgba(74, 124, 89, 0.06);
+    --shadow-md: 0 2px 8px rgba(74, 124, 89, 0.08);
+    --shadow-lg: 0 4px 16px rgba(74, 124, 89, 0.10);
+    --shadow-xl: 0 8px 24px rgba(74, 124, 89, 0.12);
+
+    /* Transition Values */
+    --transition-base: 300ms ease-out;
+    --transition-fast: 150ms ease-out;
+    --transition-slow: 500ms ease-out;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Spacing Scale */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-body antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline text-text-primary;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    font-weight: 600;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+    font-weight: 600;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+    font-weight: 500;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+    font-weight: 500;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl lg:text-2xl;
+    font-weight: 500;
+  }
+
+  h6 {
+    @apply text-base md:text-lg lg:text-xl;
+    font-weight: 500;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  a {
+    @apply text-primary hover:text-primary-600 transition-colors duration-300;
+  }
+
+  button {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  input, textarea, select {
+    @apply transition-all duration-300 ease-out;
+  }
+}
+
+@layer components {
+  /* Button Styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-cta font-medium transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-text-inverse hover:bg-primary-600 focus:ring-primary-500 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-text-inverse hover:bg-secondary-600 focus:ring-secondary-500 shadow-sm hover:shadow-md;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-text-primary hover:bg-accent-500 focus:ring-accent-400 shadow-sm hover:shadow-md;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-text-inverse focus:ring-primary-500;
+  }
+
+  .btn-ghost {
+    @apply text-primary hover:bg-primary-50 focus:ring-primary-500;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-lg rounded-lg;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-sm rounded-md;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-surface rounded-lg border border-border p-6 transition-all duration-300 ease-out;
+  }
+
+  .card-elevated {
+    @apply bg-surface-elevated shadow-md hover:shadow-lg;
+  }
+
+  .card-interactive {
+    @apply hover:bg-surface-hover cursor-pointer;
+  }
+
+  /* Form Styles */
+  .form-input {
+    @apply w-full px-4 py-3 bg-surface-elevated border border-border rounded-md text-text-primary placeholder-text-tertiary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-100 transition-all duration-300 ease-out;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-text-secondary mb-2;
+  }
+
+  .form-error {
+    @apply text-sm text-error mt-1;
+  }
+
+  .form-success {
+    @apply text-sm text-success mt-1;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-100 text-primary-700;
+  }
+
+  .badge-success {
+    @apply bg-success-light text-success-dark;
+  }
+
+  .badge-warning {
+    @apply bg-warning-light text-warning-dark;
+  }
+
+  .badge-error {
+    @apply bg-error-light text-error-dark;
+  }
+
+  /* Alert Styles */
+  .alert {
+    @apply p-4 rounded-md border;
+  }
+
+  .alert-success {
+    @apply bg-success-light border-success text-success-dark;
+  }
+
+  .alert-warning {
+    @apply bg-warning-light border-warning text-warning-dark;
+  }
+
+  .alert-error {
+    @apply bg-error-light border-error text-error-dark;
+  }
+
+  /* Container Styles */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Styles */
+  .section {
+    @apply py-12 md:py-16 lg:py-24;
+  }
+
+  .section-sm {
+    @apply py-8 md:py-12 lg:py-16;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-border my-8;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply animate-spin rounded-full border-4 border-primary-200 border-t-primary h-8 w-8;
+  }
+}
+
+@layer utilities {
+  /* Text Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Focus Visible */
+  .focus-visible-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  }
+
+  /* Smooth Scroll */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  /* Hide Scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+
+  /* Backdrop Blur */
+  .backdrop-blur-custom {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}

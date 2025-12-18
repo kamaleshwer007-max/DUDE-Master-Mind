@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - DUDE Care Game</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fdudedetec6342back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.11"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-gradient-to-br from-primary-50 via-background to-secondary-50 min-h-screen">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="relative bg-surface shadow-sm border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">DUDE Care</h1>
+                        <p class="text-xs text-text-secondary hidden sm:block">Profile Settings</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="game_dashboard.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Dashboard</a>
+                    <a href="level_selection_grid.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Levels</a>
+                    <a href="results_and_progress.html" class="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors">Progress</a>
+                </nav>
+
+                <!-- Back Button -->
+                <button type="button" onclick="window.history.back()" class="btn-outline text-sm font-medium" >
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg><a href="game_dashboard.html">Back</a>
+                    
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-2">Profile Settings</h2>
+            <p class="text-text-secondary text-base">Manage your account preferences and personal information</p>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="mb-6 border-b border-border">
+            <nav class="flex gap-8 overflow-x-auto">
+                <button type="button" class="settings-tab active pb-3 px-1 text-sm font-medium border-b-2 border-primary-600 text-primary-600 whitespace-nowrap" data-tab="profile">
+                    Profile Information
+                </button>
+                <button type="button" class="settings-tab pb-3 px-1 text-sm font-medium border-b-2 border-transparent text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap" data-tab="security">
+                    Security
+                </button>
+                <button type="button" class="settings-tab pb-3 px-1 text-sm font-medium border-b-2 border-transparent text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap" data-tab="preferences">
+                    Game Preferences
+                </button>
+                <button type="button" class="settings-tab pb-3 px-1 text-sm font-medium border-b-2 border-transparent text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap" data-tab="notifications">
+                    Notifications
+                </button>
+                <button type="button" class="settings-tab pb-3 px-1 text-sm font-medium border-b-2 border-transparent text-text-secondary hover:text-text-primary transition-colors whitespace-nowrap" data-tab="account">
+                    Account
+                </button>
+            </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="space-y-6">
+            <!-- Profile Information Tab -->
+            <div id="profileTab" class="tab-content">
+                <div class="card bg-surface">
+                    <h3 class="text-xl font-bold text-text-primary mb-6">Profile Information</h3>
+                    
+                    <!-- Avatar Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-text-primary mb-3">Profile Avatar</label>
+                        <div class="flex items-center gap-6">
+                            <div id="currentAvatar" class="w-24 h-24 bg-gradient-to-br from-accent-400 to-accent-600 rounded-full flex items-center justify-center text-white font-bold text-3xl">
+                                U
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="text-sm text-text-secondary mb-2">Choose your avatar color:</p>
+                                <div class="flex gap-2" id="avatarColors">
+                                    <button type="button" class="avatar-color w-10 h-10 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 border-2 border-accent-700" data-color="accent"></button>
+                                    <button type="button" class="avatar-color w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 border-2 border-transparent hover:border-primary-700" data-color="primary"></button>
+                                    <button type="button" class="avatar-color w-10 h-10 rounded-full bg-gradient-to-br from-secondary-400 to-secondary-600 border-2 border-transparent hover:border-secondary-700" data-color="secondary"></button>
+                                    <button type="button" class="avatar-color w-10 h-10 rounded-full bg-gradient-to-br from-success-400 to-success-600 border-2 border-transparent hover:border-success-700" data-color="success"></button>
+                                    <button type="button" class="avatar-color w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 border-2 border-transparent hover:border-purple-700" data-color="purple"></button>
+                                    <button type="button" class="avatar-color w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 border-2 border-transparent hover:border-pink-700" data-color="pink"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Form -->
+                    <form id="profileForm" class="space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="username" class="block text-sm font-medium text-text-primary mb-2">
+                                    Username
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    name="username"
+                                    class="input"
+                                    placeholder="Enter your username"
+                                    required
+                                >
+                            </div>
+                            <div>
+                                <label for="displayName" class="block text-sm font-medium text-text-primary mb-2">
+                                    Display Name
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="displayName" 
+                                    name="displayName"
+                                    class="input"
+                                    placeholder="Enter your display name"
+                                >
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                                Email Address
+                            </label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email"
+                                class="input"
+                                placeholder="your.email@example.com"
+                                required
+                            >
+                        </div>
+
+                        <div>
+                            <label for="bio" class="block text-sm font-medium text-text-primary mb-2">
+                                Bio (Optional)
+                            </label>
+                            <textarea 
+                                id="bio" 
+                                name="bio"
+                                rows="4"
+                                class="input"
+                                placeholder="Tell us about yourself..."
+                            ></textarea>
+                            <p class="text-xs text-text-secondary mt-1">Maximum 200 characters</p>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button" class="btn-outline" onclick="resetProfileForm()">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Security Tab -->
+            <div id="securityTab" class="tab-content hidden">
+                <div class="card bg-surface">
+                    <h3 class="text-xl font-bold text-text-primary mb-6">Security Settings</h3>
+                    
+                    <form id="passwordForm" class="space-y-5">
+                        <div>
+                            <label for="currentPassword" class="block text-sm font-medium text-text-primary mb-2">
+                                Current Password
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="currentPassword" 
+                                    name="currentPassword"
+                                    class="input pr-11"
+                                    placeholder="Enter current password"
+                                    required
+                                >
+                                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary transition-colors" onclick="togglePasswordVisibility('currentPassword')">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="newPassword" class="block text-sm font-medium text-text-primary mb-2">
+                                New Password
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="newPassword" 
+                                    name="newPassword"
+                                    class="input pr-11"
+                                    placeholder="Enter new password"
+                                    required
+                                >
+                                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary transition-colors" onclick="togglePasswordVisibility('newPassword')">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- Password Strength Indicator -->
+                            <div class="mt-2 space-y-1">
+                                <div class="flex gap-1">
+                                    <div id="strength1" class="h-1 w-1/4 bg-gray-200 rounded transition-colors"></div>
+                                    <div id="strength2" class="h-1 w-1/4 bg-gray-200 rounded transition-colors"></div>
+                                    <div id="strength3" class="h-1 w-1/4 bg-gray-200 rounded transition-colors"></div>
+                                    <div id="strength4" class="h-1 w-1/4 bg-gray-200 rounded transition-colors"></div>
+                                </div>
+                                <p id="strengthText" class="text-xs text-text-secondary"></p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="confirmPassword" class="block text-sm font-medium text-text-primary mb-2">
+                                Confirm New Password
+                            </label>
+                            <div class="relative">
+                                <input 
+                                    type="password" 
+                                    id="confirmPassword" 
+                                    name="confirmPassword"
+                                    class="input pr-11"
+                                    placeholder="Confirm new password"
+                                    required
+                                >
+                                <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary transition-colors" onclick="togglePasswordVisibility('confirmPassword')">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <p id="passwordMatchError" class="text-xs text-error-500 mt-1 hidden">Passwords do not match</p>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button" class="btn-outline" onclick="resetPasswordForm()">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                Update Password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Two-Factor Authentication -->
+                <div class="card bg-surface mt-6">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-text-primary mb-2">Two-Factor Authentication</h4>
+                            <p class="text-sm text-text-secondary mb-4">Add an extra layer of security to your account</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="twoFactorToggle" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Preferences Tab -->
+            <div id="preferencesTab" class="tab-content hidden">
+                <div class="card bg-surface">
+                    <h3 class="text-xl font-bold text-text-primary mb-6">Game Preferences</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Sound Effects</p>
+                                <p class="text-xs text-text-secondary">Enable audio feedback during gameplay</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="soundToggle" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Background Music</p>
+                                <p class="text-xs text-text-secondary">Play background music while playing</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="musicToggle" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Hints</p>
+                                <p class="text-xs text-text-secondary">Show hints for difficult scenarios</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="hintsToggle" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Timer</p>
+                                <p class="text-xs text-text-secondary">Enable countdown timer for scenarios</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="timerToggle" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Auto-Save Progress</p>
+                                <p class="text-xs text-text-secondary">Automatically save your progress</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="autoSaveToggle" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="py-3">
+                            <label for="difficulty" class="block text-sm font-medium text-text-primary mb-2">
+                                Preferred Difficulty Level
+                            </label>
+                            <select id="difficulty" class="input">
+                                <option value="easy">Easy - Beginner friendly</option>
+                                <option value="medium" selected>Medium - Balanced challenge</option>
+                                <option value="hard">Hard - Expert mode</option>
+                            </select>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button" class="btn-primary" onclick="saveGamePreferences()">
+                                Save Preferences
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Tab -->
+            <div id="notificationsTab" class="tab-content hidden">
+                <div class="card bg-surface">
+                    <h3 class="text-xl font-bold text-text-primary mb-6">Notification Preferences</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Email Notifications</p>
+                                <p class="text-xs text-text-secondary">Receive updates about your progress via email</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="emailNotifications" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Achievement Alerts</p>
+                                <p class="text-xs text-text-secondary">Get notified when you unlock achievements</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="achievementAlerts" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Daily Reminders</p>
+                                <p class="text-xs text-text-secondary">Remind me to practice decision-making daily</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="dailyReminders" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Weekly Progress Reports</p>
+                                <p class="text-xs text-text-secondary">Receive weekly summaries of your progress</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="weeklyReports" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex items-center justify-between py-3 border-b border-border">
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Leaderboard Updates</p>
+                                <p class="text-xs text-text-secondary">Notify me when my rank changes</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="leaderboardUpdates" class="sr-only peer">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                            </label>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button" class="btn-primary" onclick="saveNotificationPreferences()">
+                                Save Preferences
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Tab -->
+            <div id="accountTab" class="tab-content hidden">
+                <!-- Account Statistics -->
+                <div class="card bg-surface mb-6">
+                    <h3 class="text-xl font-bold text-text-primary mb-6">Account Statistics</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-text-secondary">Member Since</p>
+                                <p class="text-base font-semibold text-text-primary" id="memberSince">December 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-success-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-success-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-text-secondary">Total Levels Completed</p>
+                                <p class="text-base font-semibold text-text-primary" id="completedCount">0</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-text-secondary">Time Played</p>
+                                <p class="text-base font-semibold text-text-primary" id="timePlayed">0 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-text-secondary">Achievements Unlocked</p>
+                                <p class="text-base font-semibold text-text-primary" id="achievementCount">0/20</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="card bg-surface mb-6">
+                    <h3 class="text-xl font-bold text-text-primary mb-6">Data Management</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between p-4 bg-primary-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="text-sm font-semibold text-text-primary mb-1">Download Your Data</h4>
+                                <p class="text-xs text-text-secondary">Export all your account data and game progress</p>
+                            </div>
+                            <button type="button" class="btn-outline text-sm ml-4" onclick="downloadUserData()">
+                                Download
+                            </button>
+                        </div>
+
+                        <div class="flex items-start justify-between p-4 bg-accent-50 rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="text-sm font-semibold text-text-primary mb-1">Reset Progress</h4>
+                                <p class="text-xs text-text-secondary">Clear all game progress and start fresh</p>
+                            </div>
+                            <button type="button" class="btn-outline text-sm ml-4" onclick="confirmResetProgress()">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="card bg-error-50 border-error-300">
+                    <h3 class="text-xl font-bold text-error-700 mb-4">Danger Zone</h3>
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-semibold text-error-700 mb-1">Delete Account</h4>
+                            <p class="text-xs text-error-600">Permanently delete your account and all associated data. This action cannot be undone.</p>
+                        </div>
+                        <button type="button" class="btn-outline text-error-600 border-error-600 hover:bg-error-100 text-sm ml-4" onclick="confirmDeleteAccount()">
+                            Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+                <svg class="w-6 h-6 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div class="flex-1">
+                <h3 class="text-sm font-semibold text-text-primary" id="toastTitle">Success!</h3>
+                <p class="text-xs text-text-secondary mt-1" id="toastMessage">Changes saved successfully.</p>
+            </div>
+            <button type="button" onclick="hideToast()" class="flex-shrink-0 text-text-secondary hover:text-text-primary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-surface rounded-card shadow-elevated max-w-md w-full p-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 bg-error-100 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-error-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-text-primary" id="confirmTitle">Confirm Action</h3>
+            </div>
+            <p class="text-sm text-text-secondary mb-6" id="confirmMessage">Are you sure you want to proceed?</p>
+            <div class="flex justify-end gap-3">
+                <button type="button" class="btn-outline" onclick="closeConfirmModal()">Cancel</button>
+                <button type="button" class="btn-primary bg-error-600 hover:bg-error-700" id="confirmActionBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize user data
+        let userData = JSON.parse(localStorage.getItem('dudeUser')) || {
+            username: 'demo_user',
+            email: 'demo@example.com',
+            displayName: 'Demo User',
+            bio: '',
+            avatarColor: 'accent',
+            currentLevel: 3,
+            completedLevels: [1, 2],
+            totalScore: 250,
+            streak: 3,
+            memberSince: '2025-12-16',
+            timePlayed: 5.5,
+            achievements: 2
+        };
+
+        let userSettings = JSON.parse(localStorage.getItem('dudeSettings')) || {
+            sound: true,
+            music: false,
+            hints: true,
+            timer: false,
+            autoSave: true,
+            difficulty: 'medium',
+            emailNotifications: true,
+            achievementAlerts: true,
+            dailyReminders: false,
+            weeklyReports: true,
+            leaderboardUpdates: false,
+            twoFactor: false
+        };
+
+        // Tab switching
+        document.querySelectorAll('.settings-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                document.querySelectorAll('.settings-tab').forEach(t => {
+                    t.classList.remove('active', 'border-primary-600', 'text-primary-600');
+                    t.classList.add('border-transparent', 'text-text-secondary');
+                });
+                tab.classList.add('active', 'border-primary-600', 'text-primary-600');
+                tab.classList.remove('border-transparent', 'text-text-secondary');
+                
+                // Show target content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetTab + 'Tab').classList.remove('hidden');
+            });
+        });
+
+        // Initialize form values
+        function initializeForms() {
+            // Profile form
+            document.getElementById('username').value = userData.username;
+            document.getElementById('displayName').value = userData.displayName || '';
+            document.getElementById('email').value = userData.email;
+            document.getElementById('bio').value = userData.bio || '';
+            
+            // Update avatar
+            updateAvatar(userData.avatarColor || 'accent');
+            
+            // Game preferences
+            document.getElementById('soundToggle').checked = userSettings.sound;
+            document.getElementById('musicToggle').checked = userSettings.music;
+            document.getElementById('hintsToggle').checked = userSettings.hints;
+            document.getElementById('timerToggle').checked = userSettings.timer;
+            document.getElementById('autoSaveToggle').checked = userSettings.autoSave;
+            document.getElementById('difficulty').value = userSettings.difficulty;
+            
+            // Notifications
+            document.getElementById('emailNotifications').checked = userSettings.emailNotifications;
+            document.getElementById('achievementAlerts').checked = userSettings.achievementAlerts;
+            document.getElementById('dailyReminders').checked = userSettings.dailyReminders;
+            document.getElementById('weeklyReports').checked = userSettings.weeklyReports;
+            document.getElementById('leaderboardUpdates').checked = userSettings.leaderboardUpdates;
+            
+            // Security
+            document.getElementById('twoFactorToggle').checked = userSettings.twoFactor;
+            
+            // Account statistics
+            const memberDate = new Date(userData.memberSince);
+            document.getElementById('memberSince').textContent = memberDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            document.getElementById('completedCount').textContent = userData.completedLevels.length;
+            document.getElementById('timePlayed').textContent = userData.timePlayed + ' hours';
+            document.getElementById('achievementCount').textContent = userData.achievements + '/20';
+        }
+
+        // Avatar color selection
+        document.querySelectorAll('.avatar-color').forEach(button => {
+            button.addEventListener('click', () => {
+                const color = button.getAttribute('data-color');
+                updateAvatar(color);
+                userData.avatarColor = color;
+                
+                // Update border styling
+                document.querySelectorAll('.avatar-color').forEach(btn => {
+                    btn.classList.remove('border-accent-700', 'border-primary-700', 'border-secondary-700', 'border-success-700', 'border-purple-700', 'border-pink-700');
+                    btn.classList.add('border-transparent');
+                });
+                button.classList.remove('border-transparent');
+                button.classList.add('border-' + color + '-700');
+            });
+        });
+
+        function updateAvatar(color) {
+            const avatar = document.getElementById('currentAvatar');
+            const colorClasses = {
+                'accent': 'from-accent-400 to-accent-600',
+                'primary': 'from-primary-400 to-primary-600',
+                'secondary': 'from-secondary-400 to-secondary-600',
+                'success': 'from-success-400 to-success-600',
+                'purple': 'from-purple-400 to-purple-600',
+                'pink': 'from-pink-400 to-pink-600'
+            };
+            
+            avatar.className = 'w-24 h-24 bg-gradient-to-br rounded-full flex items-center justify-center text-white font-bold text-3xl ' + colorClasses[color];
+            avatar.textContent = userData.username.charAt(0).toUpperCase();
+        }
+
+        // Profile form submission
+        document.getElementById('profileForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            userData.username = document.getElementById('username').value;
+            userData.displayName = document.getElementById('displayName').value;
+            userData.email = document.getElementById('email').value;
+            userData.bio = document.getElementById('bio').value;
+            
+            localStorage.setItem('dudeUser', JSON.stringify(userData));
+            showToast('Profile Updated', 'Your profile information has been saved successfully.');
+        });
+
+        // Password form submission
+        document.getElementById('passwordForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                document.getElementById('passwordMatchError').classList.remove('hidden');
+                return;
+            }
+            
+            document.getElementById('passwordMatchError').classList.add('hidden');
+            
+            // Simulate password update
+            showToast('Password Updated', 'Your password has been changed successfully.');
+            resetPasswordForm();
+        });
+
+        // Password strength indicator
+        document.getElementById('newPassword').addEventListener('input', (e) => {
+            const password = e.target.value;
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            const strengthBars = ['strength1', 'strength2', 'strength3', 'strength4'];
+            const colors = ['bg-error-500', 'bg-accent-500', 'bg-primary-500', 'bg-success-500'];
+            const texts = ['Weak', 'Fair', 'Good', 'Strong'];
+            
+            strengthBars.forEach((id, index) => {
+                const bar = document.getElementById(id);
+                bar.className = 'h-1 w-1/4 rounded transition-colors ' + (index < strength ? colors[strength - 1] : 'bg-gray-200');
+            });
+            
+            document.getElementById('strengthText').textContent = strength > 0 ? 'Password strength: ' + texts[strength - 1] : '';
+        });
+
+        // Toggle password visibility
+        function togglePasswordVisibility(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        // Save game preferences
+        function saveGamePreferences() {
+            userSettings.sound = document.getElementById('soundToggle').checked;
+            userSettings.music = document.getElementById('musicToggle').checked;
+            userSettings.hints = document.getElementById('hintsToggle').checked;
+            userSettings.timer = document.getElementById('timerToggle').checked;
+            userSettings.autoSave = document.getElementById('autoSaveToggle').checked;
+            userSettings.difficulty = document.getElementById('difficulty').value;
+            
+            localStorage.setItem('dudeSettings', JSON.stringify(userSettings));
+            showToast('Preferences Saved', 'Your game preferences have been updated.');
+        }
+
+        // Save notification preferences
+        function saveNotificationPreferences() {
+            userSettings.emailNotifications = document.getElementById('emailNotifications').checked;
+            userSettings.achievementAlerts = document.getElementById('achievementAlerts').checked;
+            userSettings.dailyReminders = document.getElementById('dailyReminders').checked;
+            userSettings.weeklyReports = document.getElementById('weeklyReports').checked;
+            userSettings.leaderboardUpdates = document.getElementById('leaderboardUpdates').checked;
+            
+            localStorage.setItem('dudeSettings', JSON.stringify(userSettings));
+            showToast('Preferences Saved', 'Your notification preferences have been updated.');
+        }
+
+        // Reset forms
+        function resetProfileForm() {
+            initializeForms();
+        }
+
+        function resetPasswordForm() {
+            document.getElementById('passwordForm').reset();
+            document.getElementById('passwordMatchError').classList.add('hidden');
+            const strengthBars = ['strength1', 'strength2', 'strength3', 'strength4'];
+            strengthBars.forEach(id => {
+                document.getElementById(id).className = 'h-1 w-1/4 bg-gray-200 rounded transition-colors';
+            });
+            document.getElementById('strengthText').textContent = '';
+        }
+
+        // Download user data
+        function downloadUserData() {
+            const data = {
+                profile: userData,
+                settings: userSettings
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'dude_detection_data.json';
+            link.click();
+            URL.revokeObjectURL(url);
+            
+            showToast('Data Downloaded', 'Your account data has been downloaded successfully.');
+        }
+
+        // Confirm reset progress
+        function confirmResetProgress() {
+            showConfirmModal(
+                'Reset Progress',
+                'Are you sure you want to reset all your game progress? This will clear all completed levels, achievements, and scores. This action cannot be undone.',
+                () => {
+                    userData.currentLevel = 1;
+                    userData.completedLevels = [];
+                    userData.totalScore = 0;
+                    userData.streak = 0;
+                    userData.achievements = 0;
+                    localStorage.setItem('dudeUser', JSON.stringify(userData));
+                    showToast('Progress Reset', 'Your game progress has been reset successfully.');
+                    setTimeout(() => window.location.reload(), 1500);
+                }
+            );
+        }
+
+        // Confirm delete account
+        function confirmDeleteAccount() {
+            showConfirmModal(
+                'Delete Account',
+                'Are you absolutely sure you want to delete your account? This will permanently delete all your data including progress, achievements, and settings. This action cannot be undone.',
+                () => {
+                    localStorage.removeItem('dudeUser');
+                    localStorage.removeItem('dudeSettings');
+                    localStorage.removeItem('dudeLoggedIn');
+                    showToast('Account Deleted', 'Your account has been deleted. Redirecting...');
+                    setTimeout(() => window.location.href = 'user_login.html', 1500);
+                }
+            );
+        }
+
+        // Toast notifications
+        function showToast(title, message) {
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMessage').textContent = message;
+            document.getElementById('successToast').classList.remove('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('successToast').classList.add('hidden');
+            }, 5000);
+        }
+
+        function hideToast() {
+            document.getElementById('successToast').classList.add('hidden');
+        }
+
+        // Confirmation modal
+        let confirmAction = null;
+
+        function showConfirmModal(title, message, action) {
+            document.getElementById('confirmTitle').textContent = title;
+            document.getElementById('confirmMessage').textContent = message;
+            confirmAction = action;
+            document.getElementById('confirmModal').classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.add('hidden');
+            confirmAction = null;
+        }
+
+        document.getElementById('confirmActionBtn').addEventListener('click', () => {
+            if (confirmAction) {
+                confirmAction();
+                closeConfirmModal();
+            }
+        });
+
+        // Two-factor authentication toggle
+        document.getElementById('twoFactorToggle').addEventListener('change', (e) => {
+            userSettings.twoFactor = e.target.checked;
+            localStorage.setItem('dudeSettings', JSON.stringify(userSettings));
+            showToast(
+                e.target.checked ? '2FA Enabled' : '2FA Disabled',
+                e.target.checked ? 'Two-factor authentication has been enabled for your account.' : 'Two-factor authentication has been disabled.'
+            );
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            if (!localStorage.getItem('dudeLoggedIn')) {
+                window.location.href = 'user_login.html';
+                return;
+            }
+            
+            initializeForms();
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

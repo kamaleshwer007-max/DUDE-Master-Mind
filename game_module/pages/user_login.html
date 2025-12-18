@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - DUDE Care Game</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fdudedetec6342back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.11"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-gradient-to-br from-primary-50 via-background to-secondary-50 min-h-screen">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative min-h-screen flex items-center justify-center px-4 py-8">
+        <div class="w-full max-w-md">
+            <!-- Logo and Header -->
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl shadow-lg mb-4">
+                    <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-2">Welcome Back</h1>
+                <p class="text-text-secondary text-base md:text-lg">Continue your decision-making journey</p>
+            </div>
+
+            <!-- Login Card -->
+            <div class="card bg-surface shadow-elevated">
+                <form id="loginForm" class="space-y-5">
+                    <!-- Username/Email Field -->
+                    <div>
+                        <label for="credential" class="block text-sm font-medium text-text-primary mb-2">
+                            Username or Email
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                id="credential" 
+                                name="credential"
+                                class="input pl-11"
+                                placeholder="Enter your username or email"
+                                required
+                                autocomplete="username"
+                            >
+                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <p id="credentialError" class="text-xs text-error-500 mt-1 hidden"></p>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                            Password
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password"
+                                class="input pl-11 pr-11"
+                                placeholder="Enter your password"
+                                required
+                                autocomplete="current-password"
+                            >
+                            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                                </svg>
+                            </div>
+                            <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary transition-colors">
+                                <svg id="eyeOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <svg id="eyeClosed" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <p id="passwordError" class="text-xs text-error-500 mt-1 hidden"></p>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                id="rememberMe" 
+                                name="rememberMe"
+                                class="w-4 h-4 text-primary-600 border-border rounded focus:ring-2 focus:ring-primary-500"
+                            >
+                            <label for="rememberMe" class="text-sm text-text-secondary">
+                                Remember me
+                            </label>
+                        </div>
+                        <a href="javascript:void(0)" id="forgotPasswordLink" class="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors">
+                            Forgot password?
+                        </a>
+                    </div>
+
+                    <!-- Error Message Display -->
+                    <div id="loginError" class="hidden bg-error-50 border border-error-500 rounded-lg p-3">
+                        <div class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-error-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <p id="loginErrorText" class="text-sm text-error-700"></p>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit" 
+                        id="submitBtn"
+                        class="btn-primary w-full text-base font-semibold shadow-md hover:shadow-lg"
+                    >
+                        <span id="btnText">Sign In</span>
+                        <svg id="btnLoader" class="hidden animate-spin ml-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Social Login Options -->
+                    <div class="relative my-6">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-border"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-surface text-text-secondary">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" class="btn-outline flex items-center justify-center gap-2 py-2.5">
+                            <img src="https://www.google.com/favicon.ico" alt="Google logo" class="w-5 h-5">
+                            <span class="text-sm font-medium">Google</span>
+                        </button>
+                        <button type="button" class="btn-outline flex items-center justify-center gap-2 py-2.5">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                            </svg>
+                            <span class="text-sm font-medium">GitHub</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Registration Link -->
+            <div class="text-center mt-6">
+                <p class="text-text-secondary text-sm">
+                    Don't have an account? 
+                    <a href="user_registration.html" class="text-primary-600 hover:text-primary-700 font-medium transition-colors">
+                        Create one now
+                    </a>
+                </p>
+            </div>
+
+            <!-- Quick Access Demo Credentials -->
+            <div class="mt-6 p-4 bg-accent-50 border border-accent-200 rounded-lg">
+                <div class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-accent-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="flex-1">
+                        <h3 class="text-sm font-semibold text-accent-800 mb-1">Demo Access</h3>
+                        <p class="text-xs text-accent-700 mb-2">Try the game with these test credentials:</p>
+                        <div class="space-y-1 text-xs font-mono">
+                            <div class="flex items-center gap-2">
+                                <span class="text-accent-600">Username:</span>
+                                <span class="text-accent-800 font-semibold">demo_user</span>
+                                <button type="button" onclick="copyToClipboard('demo_user', this)" class="text-accent-600 hover:text-accent-700">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-accent-600">Password:</span>
+                                <span class="text-accent-800 font-semibold">Demo@123</span>
+                                <button type="button" onclick="copyToClipboard('Demo@123', this)" class="text-accent-600 hover:text-accent-700">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast (Hidden by default) -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+                <svg class="w-6 h-6 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div class="flex-1">
+                <h3 class="text-sm font-semibold text-text-primary">Login Successful!</h3>
+                <p class="text-xs text-text-secondary mt-1">Redirecting to your dashboard...</p>
+            </div>
+            <button type="button" onclick="document.getElementById('successToast').classList.add('hidden')" class="flex-shrink-0 text-text-secondary hover:text-text-primary">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal (Hidden by default) -->
+    <div id="forgotPasswordModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center px-4 z-50">
+        <div class="bg-surface rounded-card shadow-elevated max-w-md w-full p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-text-primary">Reset Password</h2>
+                <button type="button" id="closeModal" class="text-text-secondary hover:text-text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-sm text-text-secondary mb-4">Enter your email address and we'll send you instructions to reset your password.</p>
+            <form id="forgotPasswordForm" class="space-y-4">
+                <div>
+                    <label for="resetEmail" class="block text-sm font-medium text-text-primary mb-2">
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="resetEmail" 
+                        name="resetEmail"
+                        class="input"
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn-primary w-full">
+                    Send Reset Link
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Password visibility toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        const eyeOpen = document.getElementById('eyeOpen');
+        const eyeClosed = document.getElementById('eyeClosed');
+
+        togglePassword.addEventListener('click', () => {
+            const type = password.type === 'password' ? 'text' : 'password';
+            password.type = type;
+            eyeOpen.classList.toggle('hidden');
+            eyeClosed.classList.toggle('hidden');
+        });
+
+        // Mock user database for demo
+        const mockUsers = [
+            {
+                username: 'demo_user',
+                email: 'demo@example.com',
+                password: 'Demo@123',
+                currentLevel: 5,
+                completedLevels: [1, 2, 3, 4],
+                totalScore: 850
+            },
+            {
+                username: 'test_player',
+                email: 'test@example.com',
+                password: 'Test@456',
+                currentLevel: 1,
+                completedLevels: [],
+                totalScore: 0
+            }
+        ];
+
+        // Form submission
+        const form = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+        const loginError = document.getElementById('loginError');
+        const loginErrorText = document.getElementById('loginErrorText');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Hide previous errors
+            loginError.classList.add('hidden');
+            
+            // Get form values
+            const credential = document.getElementById('credential').value.trim();
+            const passwordValue = password.value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // Validate inputs
+            if (!credential || !passwordValue) {
+                showError('Please fill in all fields');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Signing In...';
+            btnLoader.classList.remove('hidden');
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Check credentials against mock database
+                const user = mockUsers.find(u => 
+                    (u.username === credential || u.email === credential) && 
+                    u.password === passwordValue
+                );
+                
+                if (user) {
+                    // Store user data in localStorage
+                    const userData = {
+                        username: user.username,
+                        email: user.email,
+                        currentLevel: user.currentLevel,
+                        completedLevels: user.completedLevels,
+                        totalScore: user.totalScore,
+                        lastLogin: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('dudeUser', JSON.stringify(userData));
+                    localStorage.setItem('dudeLoggedIn', 'true');
+                    
+                    if (rememberMe) {
+                        localStorage.setItem('dudeRememberMe', 'true');
+                    }
+                    
+                    // Show success toast
+                    document.getElementById('successToast').classList.remove('hidden');
+                    
+                    // Redirect to dashboard after 1.5 seconds
+                    setTimeout(() => {
+                        window.location.href = 'game_dashboard.html';
+                    }, 1500);
+                } else {
+                    // Show error message
+                    showError('Invalid username/email or password. Please try again.');
+                    
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    btnText.textContent = 'Sign In';
+                    btnLoader.classList.add('hidden');
+                }
+            }, 1500);
+        });
+
+        function showError(message) {
+            loginErrorText.textContent = message;
+            loginError.classList.remove('hidden');
+        }
+
+        // Forgot password modal
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        const closeModal = document.getElementById('closeModal');
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+
+        forgotPasswordLink.addEventListener('click', () => {
+            forgotPasswordModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            forgotPasswordModal.classList.add('hidden');
+        });
+
+        forgotPasswordModal.addEventListener('click', (e) => {
+            if (e.target === forgotPasswordModal) {
+                forgotPasswordModal.classList.add('hidden');
+            }
+        });
+
+        forgotPasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('resetEmail').value;
+            
+            // Simulate sending reset email
+            // alert(Password reset link has been sent to ${email});
+            forgotPasswordModal.classList.add('hidden');
+            forgotPasswordForm.reset();
+        });
+
+        // Copy to clipboard function
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                }, 1500);
+            });
+        }
+
+        // Auto-hide success toast after 5 seconds
+        setTimeout(() => {
+            const toast = document.getElementById('successToast');
+            if (!toast.classList.contains('hidden')) {
+                toast.classList.add('hidden');
+            }
+        }, 5000);
+
+        // Check if user is already logged in
+        const isLoggedIn = localStorage.getItem('dudeLoggedIn') === 'true';
+        if (isLoggedIn) {
+            window.location.href = 'game_dashboard.html';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Escape key closes modal
+            if (e.key === 'Escape' && !forgotPasswordModal.classList.contains('hidden')) {
+                forgotPasswordModal.classList.add('hidden');
+            }
+        });
+    </script>
+<!-- <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script> -->
+</body>
+</html>

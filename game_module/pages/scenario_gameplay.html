@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scenario Gameplay - DUDE Care Game</title>
+    <link rel="stylesheet" href="../css/main.css">
+  
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fdudedetec6342back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.11"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-gradient-to-br from-primary-50 via-background to-secondary-50 min-h-screen">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 opacity-5 pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="relative bg-surface shadow-sm border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and Level Info -->
+                <div class="flex items-center gap-4">
+                    <a href="game_dashboard.html" class="inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                    </a>
+                    <div>
+                        <h1 class="text-lg font-bold text-text-primary">Level <span id="currentLevel">1</span></h1>
+                        <p class="text-xs text-text-secondary">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">5</span></p>
+                    </div>
+                </div>
+
+                <!-- Score and Actions -->
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-50 rounded-lg">
+                        <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                        </svg>
+                        <span class="font-semibold text-primary-700" id="currentScore">0</span>
+                    </div>
+                    <button id="exitBtn" class="btn-outline px-4 py-2 text-sm">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        Exit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Timer Bar -->
+    <div id="timerContainer" class="relative bg-surface border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-sm font-medium text-text-secondary">Time Remaining</span>
+                </div>
+                <span id="timerDisplay" class="text-lg font-bold text-primary-600">30s</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                <div id="timerBar" class="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full transition-all duration-1000" style="width: 100%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Scenario Card -->
+        <section class="card mb-8">
+            <!-- Scenario Image -->
+            <div class="relative w-full h-64 md:h-80 rounded-lg overflow-hidden mb-6">
+                <img 
+                    id="scenarioImage" 
+                    src="https://img.rocket.new/generatedImages/rocket_gen_img_17778e89d-1765017136378.png" 
+                    alt="Person standing at a crossroads making a decision"
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-500 text-white">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+                        </svg>
+                        <span id="scenarioCategory">Decision Making</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Scenario Content -->
+            <div class="space-y-4">
+                <h2 class="text-2xl md:text-3xl font-bold text-text-primary leading-tight" id="scenarioTitle">
+                    The Late Night Study Session
+                </h2>
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-base md:text-lg text-text-secondary leading-relaxed" id="scenarioDescription">
+                        It's 11 PM and you have an important exam tomorrow morning at 8 AM. You've been studying for the past 3 hours, but you still feel unprepared. Your friend texts you suggesting an all-night study session at a 24-hour café. You're already feeling tired, and you know you need at least 6 hours of sleep to perform well. What should you do?
+                    </p>
+                </div>
+
+                <!-- Hint Button -->
+                <div class="flex items-center gap-3 pt-2">
+                    <button id="hintBtn" class="inline-flex items-center gap-2 px-4 py-2 bg-accent-50 text-accent-700 rounded-lg hover:bg-accent-100 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        <span class="font-medium">Need a Hint?</span>
+                    </button>
+                    <span class="text-sm text-text-secondary">(<span id="hintsRemaining">3</span> hints remaining)</span>
+                </div>
+
+                <!-- Hint Display -->
+                <div id="hintDisplay" class="hidden p-4 bg-accent-50 border-l-4 border-accent-500 rounded-lg">
+                    <div class="flex items-start gap-3">
+                        <svg class="w-6 h-6 text-accent-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-sm text-accent-900" id="hintText">Consider the importance of rest for cognitive performance and memory consolidation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Answer Choices -->
+        <section class="space-y-4 mb-8">
+            <h3 class="text-xl font-semibold text-text-primary mb-4">Choose Your Response:</h3>
+            
+            <div id="choicesContainer" class="space-y-3">
+                <!-- Choice A -->
+                <button class="choice-card w-full text-left p-5 bg-surface border-2 border-border rounded-lg hover:border-primary-400 hover:shadow-md transition-all group" data-choice="A">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 text-primary-700 font-bold flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                            A
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-text-primary font-medium leading-relaxed">
+                                Join your friend for the all-night study session to maximize preparation time.
+                            </p>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Choice B -->
+                <button class="choice-card w-full text-left p-5 bg-surface border-2 border-border rounded-lg hover:border-primary-400 hover:shadow-md transition-all group" data-choice="B">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 text-primary-700 font-bold flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                            B
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-text-primary font-medium leading-relaxed">
+                                Study for one more hour, then get at least 6 hours of sleep before the exam.
+                            </p>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Choice C -->
+                <button class="choice-card w-full text-left p-5 bg-surface border-2 border-border rounded-lg hover:border-primary-400 hover:shadow-md transition-all group" data-choice="C">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 text-primary-700 font-bold flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                            C
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-text-primary font-medium leading-relaxed">
+                                Go to sleep immediately without any more studying to ensure maximum rest.
+                            </p>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Choice D -->
+                <button class="choice-card w-full text-left p-5 bg-surface border-2 border-border rounded-lg hover:border-primary-400 hover:shadow-md transition-all group" data-choice="D">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 text-primary-700 font-bold flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                            D
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-text-primary font-medium leading-relaxed">
+                                Take a power nap for 2 hours, then continue studying until the exam.
+                            </p>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Feedback Section (Hidden by default) -->
+        <section id="feedbackSection" class="hidden mb-8">
+            <!-- Correct Answer Feedback -->
+            <div id="correctFeedback" class="hidden card bg-success-50 border-2 border-success-500">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-success-500 flex items-center justify-center">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-success-700 mb-2">Excellent Choice!</h3>
+                        <p class="text-base text-success-900 leading-relaxed" id="correctExplanation">
+                            You made the right decision! Balancing study time with adequate sleep is crucial for optimal exam performance. Research shows that sleep helps consolidate memory and improves cognitive function, making this the most effective approach.
+                        </p>
+                        <div class="mt-4 flex items-center gap-2">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-success-100 text-success-700">
+                                +10 Points
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Incorrect Answer Feedback -->
+            <div id="incorrectFeedback" class="hidden card bg-error-50 border-2 border-error-500">
+                <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-error-500 flex items-center justify-center">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-error-700 mb-2">Not Quite Right</h3>
+                        <p class="text-base text-error-900 leading-relaxed mb-3" id="incorrectExplanation">
+                            While studying is important, sacrificing sleep can actually harm your exam performance. Sleep deprivation impairs memory, concentration, and decision-making abilities.
+                        </p>
+                        <div class="p-4 bg-white rounded-lg border border-error-200">
+                            <p class="text-sm font-semibold text-text-primary mb-2">The Better Choice:</p>
+                            <p class="text-sm text-text-secondary">Study for one more hour, then get at least 6 hours of sleep before the exam. This balances preparation with the rest needed for optimal cognitive performance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Buttons -->
+        <section id="navigationSection" class="hidden flex flex-col sm:flex-row gap-4 justify-between items-center">
+            <button id="replayBtn" class="btn-outline w-full sm:w-auto">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                Replay Scenario
+            </button>
+            <button id="nextBtn" class="btn-primary w-full sm:w-auto">
+                Next Question
+                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </button>
+        </section>
+    </main>
+
+    <!-- Exit Confirmation Modal -->
+    <div id="exitModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
+        <div class="card max-w-md w-full">
+            <div class="flex items-start gap-4 mb-6">
+                <div class="flex-shrink-0">
+                    <div class="w-12 h-12 rounded-full bg-warning-100 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-warning-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-xl font-bold text-text-primary mb-2">Exit Level?</h3>
+                    <p class="text-base text-text-secondary">Your progress in this level will be lost. Are you sure you want to exit?</p>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button id="cancelExitBtn" class="btn-outline flex-1">
+                    Cancel
+                </button>
+                <button id="confirmExitBtn" class="btn-primary flex-1 bg-error-500 hover:bg-error-600">
+                    Exit Level
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div id="successToast" class="toast hidden">
+        <div class="flex items-start gap-3">
+            <div class="flex-shrink-0">
+                <svg class="w-6 h-6 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <div class="flex-1">
+                <h3 class="text-sm font-semibold text-text-primary">Correct Answer!</h3>
+                <p class="text-xs text-text-secondary mt-1">+10 points earned</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game State Management
+        let gameState = {
+            currentLevel: 1,
+            currentQuestion: 1,
+            totalQuestions: 5,
+            score: 0,
+            hintsRemaining: 3,
+            timeRemaining: 30,
+            timerInterval: null,
+            answered: false,
+            correctAnswer: 'B'
+        };
+
+        // Mock Scenario Data
+        const scenarios = [
+            {
+                id: 1,
+                category: 'Decision Making',
+                title: 'The Late Night Study Session',
+                description: "It's 11 PM and you have an important exam tomorrow morning at 8 AM. You've been studying for the past 3 hours, but you still feel unprepared. Your friend texts you suggesting an all-night study session at a 24-hour café. You're already feeling tired, and you know you need at least 6 hours of sleep to perform well. What should you do?",
+                image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2940&auto=format&fit=crop',
+                imageAlt: 'Person standing at a crossroads making a decision',
+                choices: [
+                    { id: 'A', text: 'Join your friend for the all-night study session to maximize preparation time.' },
+                    { id: 'B', text: 'Study for one more hour, then get at least 6 hours of sleep before the exam.' },
+                    { id: 'C', text: 'Go to sleep immediately without any more studying to ensure maximum rest.' },
+                    { id: 'D', text: 'Take a power nap for 2 hours, then continue studying until the exam.' }
+                ],
+                correctAnswer: 'B',
+                hint: 'Consider the importance of rest for cognitive performance and memory consolidation.',
+                correctExplanation: 'You made the right decision! Balancing study time with adequate sleep is crucial for optimal exam performance. Research shows that sleep helps consolidate memory and improves cognitive function, making this the most effective approach.',
+                incorrectExplanation: 'While studying is important, sacrificing sleep can actually harm your exam performance. Sleep deprivation impairs memory, concentration, and decision-making abilities.',
+                correctChoice: 'Study for one more hour, then get at least 6 hours of sleep before the exam. This balances preparation with the rest needed for optimal cognitive performance.'
+            },
+            {
+                id: 2,
+                category: 'Safety',
+                title: 'The Suspicious Package',
+                description: "You're walking through a busy train station when you notice an unattended backpack near a bench. It's been sitting there for at least 10 minutes, and no one seems to be claiming it. The station is crowded with commuters. What should you do?",
+                image: 'https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+                imageAlt: 'Busy train station with commuters',
+                choices: [
+                    { id: 'A', text: 'Open the backpack to check if there are any identification documents inside.' },
+                    { id: 'B', text: 'Immediately alert station security or police about the unattended package.' },
+                    { id: 'C', text: 'Move the backpack to a lost and found area yourself.' },
+                    { id: 'D', text: 'Ignore it and continue with your journey as someone will eventually claim it.' }
+                ],
+                correctAnswer: 'B',
+                hint: 'Think about safety protocols for unattended items in public spaces.',
+                correctExplanation: 'Excellent decision! Alerting authorities about unattended packages is the safest approach. Security personnel are trained to handle such situations and can assess potential risks properly.',
+                incorrectExplanation: 'Unattended packages in public spaces should never be touched or moved by civilians. Always alert security personnel who are trained to handle potentially dangerous situations.',
+                correctChoice: 'Immediately alert station security or police about the unattended package. This ensures proper safety protocols are followed.'
+            }
+        ];
+
+        // DOM Elements
+        const timerDisplay = document.getElementById('timerDisplay');
+        const timerBar = document.getElementById('timerBar');
+        const currentLevelEl = document.getElementById('currentLevel');
+        const currentQuestionEl = document.getElementById('currentQuestion');
+        const totalQuestionsEl = document.getElementById('totalQuestions');
+        const currentScoreEl = document.getElementById('currentScore');
+        const hintsRemainingEl = document.getElementById('hintsRemaining');
+        const hintBtn = document.getElementById('hintBtn');
+        const hintDisplay = document.getElementById('hintDisplay');
+        const hintText = document.getElementById('hintText');
+        const choiceCards = document.querySelectorAll('.choice-card');
+        const feedbackSection = document.getElementById('feedbackSection');
+        const correctFeedback = document.getElementById('correctFeedback');
+        const incorrectFeedback = document.getElementById('incorrectFeedback');
+        const navigationSection = document.getElementById('navigationSection');
+        const nextBtn = document.getElementById('nextBtn');
+        const replayBtn = document.getElementById('replayBtn');
+        const exitBtn = document.getElementById('exitBtn');
+        const exitModal = document.getElementById('exitModal');
+        const cancelExitBtn = document.getElementById('cancelExitBtn');
+        const confirmExitBtn = document.getElementById('confirmExitBtn');
+        const successToast = document.getElementById('successToast');
+
+        // Initialize Game
+        function initGame() {
+            const userData = JSON.parse(localStorage.getItem('dudeUser') || '{}');
+            gameState.currentLevel = userData.currentLevel || 1;
+            loadScenario(0);
+            startTimer();
+            updateUI();
+        }
+
+        // Load Scenario
+        function loadScenario(index) {
+            const scenario = scenarios[index];
+            if (!scenario) return;
+
+            document.getElementById('scenarioCategory').textContent = scenario.category;
+            document.getElementById('scenarioTitle').textContent = scenario.title;
+            document.getElementById('scenarioDescription').textContent = scenario.description;
+            document.getElementById('scenarioImage').src = scenario.image;
+            document.getElementById('scenarioImage').alt = scenario.imageAlt;
+            document.getElementById('hintText').textContent = scenario.hint;
+            document.getElementById('correctExplanation').textContent = scenario.correctExplanation;
+            document.getElementById('incorrectExplanation').textContent = scenario.incorrectExplanation;
+
+            gameState.correctAnswer = scenario.correctAnswer;
+            gameState.answered = false;
+
+            // Update choices
+            const choicesContainer = document.getElementById('choicesContainer');
+            choicesContainer.innerHTML = '';
+            scenario.choices.forEach(choice => {
+                const button = document.createElement('button');
+                button.className = 'choice-card w-full text-left p-5 bg-surface border-2 border-border rounded-lg hover:border-primary-400 hover:shadow-md transition-all group';
+                button.setAttribute('data-choice', choice.id);
+                button.innerHTML = `
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 text-primary-700 font-bold flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                            ${choice.id}
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-base md:text-lg text-text-primary font-medium leading-relaxed">
+                                ${choice.text}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                button.addEventListener('click', () => handleAnswer(choice.id));
+                choicesContainer.appendChild(button);
+            });
+
+            // Reset UI
+            feedbackSection.classList.add('hidden');
+            correctFeedback.classList.add('hidden');
+            incorrectFeedback.classList.add('hidden');
+            navigationSection.classList.add('hidden');
+            hintDisplay.classList.add('hidden');
+        }
+
+        // Timer Functions
+        function startTimer() {
+            gameState.timeRemaining = 30;
+            updateTimer();
+            
+            if (gameState.timerInterval) {
+                clearInterval(gameState.timerInterval);
+            }
+            
+            gameState.timerInterval = setInterval(() => {
+                gameState.timeRemaining--;
+                updateTimer();
+                
+                if (gameState.timeRemaining <= 0) {
+                    clearInterval(gameState.timerInterval);
+                    handleTimeout();
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            timerDisplay.textContent = `${gameState.timeRemaining}s`;
+            const percentage = (gameState.timeRemaining / 30) * 100;
+            timerBar.style.width = `${percentage}%`;
+            
+            // Change color based on time remaining
+            if (gameState.timeRemaining <= 10) {
+                timerBar.className = 'bg-gradient-to-r from-error-500 to-warning-500 h-2 rounded-full transition-all duration-1000';
+            } else if (gameState.timeRemaining <= 20) {
+                timerBar.className = 'bg-gradient-to-r from-warning-500 to-accent-500 h-2 rounded-full transition-all duration-1000';
+            } else {
+                timerBar.className = 'bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full transition-all duration-1000';
+            }
+        }
+
+        function handleTimeout() {
+            if (!gameState.answered) {
+                showFeedback(false);
+                disableChoices();
+            }
+        }
+
+        // Answer Handling
+        function handleAnswer(choice) {
+            if (gameState.answered) return;
+            
+            gameState.answered = true;
+            clearInterval(gameState.timerInterval);
+            
+            const isCorrect = choice === gameState.correctAnswer;
+            
+            // Update choice card styling
+            const selectedCard = document.querySelector(`[data-choice="${choice}"]`);
+            const correctCard = document.querySelector(`[data-choice="${gameState.correctAnswer}"]`);
+            
+            if (isCorrect) {
+                selectedCard.classList.add('border-success-500', 'bg-success-50');
+                gameState.score += 10;
+                showSuccessToast();
+                playAudioFeedback(true);
+            } else {
+                selectedCard.classList.add('border-error-500', 'bg-error-50');
+                correctCard.classList.add('border-success-500', 'bg-success-50');
+                playAudioFeedback(false);
+            }
+            
+            showFeedback(isCorrect);
+            disableChoices();
+            updateUI();
+        }
+
+        function showFeedback(isCorrect) {
+            feedbackSection.classList.remove('hidden');
+            navigationSection.classList.remove('hidden');
+            
+            if (isCorrect) {
+                correctFeedback.classList.remove('hidden');
+                incorrectFeedback.classList.add('hidden');
+            } else {
+                correctFeedback.classList.add('hidden');
+                incorrectFeedback.classList.remove('hidden');
+            }
+        }
+
+        function disableChoices() {
+            document.querySelectorAll('.choice-card').forEach(card => {
+                card.disabled = true;
+                card.classList.add('cursor-not-allowed', 'opacity-75');
+            });
+        }
+
+        // Hint System
+        hintBtn.addEventListener('click', () => {
+            if (gameState.hintsRemaining > 0 && !gameState.answered) {
+                gameState.hintsRemaining--;
+                hintDisplay.classList.remove('hidden');
+                hintsRemainingEl.textContent = gameState.hintsRemaining;
+                
+                if (gameState.hintsRemaining === 0) {
+                    hintBtn.disabled = true;
+                    hintBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            }
+        });
+
+        // Navigation
+        nextBtn.addEventListener('click', () => {
+            gameState.currentQuestion++;
+            
+            if (gameState.currentQuestion > gameState.totalQuestions) {
+                // Level completed
+                localStorage.setItem('levelScore', gameState.score);
+                window.location.href = 'results_and_progress.html';
+            } else {
+                const nextScenarioIndex = (gameState.currentQuestion - 1) % scenarios.length;
+                loadScenario(nextScenarioIndex);
+                startTimer();
+                updateUI();
+            }
+        });
+
+        replayBtn.addEventListener('click', () => {
+            const currentScenarioIndex = (gameState.currentQuestion - 1) % scenarios.length;
+            loadScenario(currentScenarioIndex);
+            startTimer();
+        });
+
+        // Exit Modal
+        exitBtn.addEventListener('click', () => {
+            exitModal.classList.remove('hidden');
+        });
+
+        cancelExitBtn.addEventListener('click', () => {
+            exitModal.classList.add('hidden');
+        });
+
+        confirmExitBtn.addEventListener('click', () => {
+            window.location.href = 'level_selection_grid.html';
+        });
+
+        // UI Updates
+        function updateUI() {
+            currentLevelEl.textContent = gameState.currentLevel;
+            currentQuestionEl.textContent = gameState.currentQuestion;
+            totalQuestionsEl.textContent = gameState.totalQuestions;
+            currentScoreEl.textContent = gameState.score;
+            hintsRemainingEl.textContent = gameState.hintsRemaining;
+        }
+
+        // Audio Feedback (Mock)
+        function playAudioFeedback(isCorrect) {
+            // In a real implementation, this would play actual audio files
+            console.log(isCorrect ? 'Playing success sound' : 'Playing error sound');
+        }
+
+        // Success Toast
+        function showSuccessToast() {
+            successToast.classList.remove('hidden');
+            setTimeout(() => {
+                successToast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initGame);
+
+        // Close modal on outside click
+        exitModal.addEventListener('click', (e) => {
+            if (e.target === exitModal) {
+                exitModal.classList.add('hidden');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
